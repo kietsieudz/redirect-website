@@ -285,7 +285,7 @@
             box.className = 'milestone';
 
             const title = document.createElement('h2');
-            title.textContent = `Ủng hộ máy chủ ${milestone.amount.toLocaleString()} VNĐ`;
+            title.innerHTML = `Ủng hộ máy chủ ${milestone.amount.toLocaleString()} VNĐ<br>(Vô NPC trong nhà chọn Quy Đổi để nhận quà)`;
             box.appendChild(title);
 
             const grid = document.createElement('div');
