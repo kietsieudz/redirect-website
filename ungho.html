@@ -283,14 +283,14 @@
         milestones.forEach(milestone => {
             const box = document.createElement('div');
             box.className = 'milestone';
-
+        
             const title = document.createElement('h2');
             title.innerHTML = `Ủng hộ máy chủ ${milestone.amount.toLocaleString()} VNĐ<br><span style="font-size: 0.85em;">(Vô NPC trong nhà chọn Quy Đổi để nhận quà)</span>`;
             box.appendChild(title);
-
+        
             const grid = document.createElement('div');
             grid.className = 'gift-grid';
-
+        
             milestone.gifts.forEach(gift => {
                 const giftBox = document.createElement('div');
                 giftBox.className = 'gift';
@@ -301,10 +301,21 @@
                 giftBox.addEventListener('click', () => showPopup(gift));
                 grid.appendChild(giftBox);
             });
-
+        
             box.appendChild(grid);
+        
+            // Thêm dòng chữ "Click để xem chi tiết quà"
+            const note = document.createElement('p');
+            note.textContent = 'Click để xem chi tiết quà';
+            note.style.fontSize = '0.9em';
+            note.style.marginTop = '8px';
+            note.style.fontStyle = 'italic';
+            note.style.color = '#555';
+            box.appendChild(note);
+        
             container.appendChild(box);
         });
+
 
         function showPopup(gift) {
             document.getElementById('popup-img').src = gift.image;
