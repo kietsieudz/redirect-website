@@ -1,86 +1,109 @@
 <!doctype html>
-<html lang="vi">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>User Privacy Choices – TDStudio Game</title>
-    <meta name="color-scheme" content="light dark" />
-    <link rel="icon" type="image/x-icon" href="static/sonic/img/favicon_1.png">
-    <style>
-        body {
-            font-family: system-ui, sans-serif;
-            background: #0b1020;
-            color: #e7ecff;
-            margin: 0;
-            padding: 0;
-        }
-
-        main {
-            max-width: 900px;
-            margin: auto;
-            padding: 48px 20px;
-        }
-
-        h1 {
-            font-size: 32px;
-            margin-bottom: 16px;
-        }
-
-        p {
-            margin: 12px 0;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, .06);
-            border: 1px solid rgba(255, 255, 255, .15);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 16px 0;
-        }
-
-        a {
-            color: #8aa0ff;
-            text-decoration: none;
-        }
-
-        footer {
-            margin-top: 48px;
-            border-top: 1px dashed rgba(255, 255, 255, .15);
-            padding: 16px 0;
-            color: #b5c0ffcc;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Privacy Choices – TDStudio Game</title>
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" type="image/x-icon" href="static/sonic/img/favicon_1.png">
+  <style>
+    body{font-family:system-ui,sans-serif;background:#0b1020;color:#e7ecff;margin:0;padding:0}
+    main{max-width:900px;margin:auto;padding:48px 20px}
+    h1{font-size:32px;margin-bottom:16px}
+    p{margin:12px 0}
+    .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:20px;margin:16px 0}
+    a{color:#8aa0ff;text-decoration:none}
+    footer{margin-top:48px;border-top:1px dashed rgba(255,255,255,.15);padding:16px 0;color:#b5c0ffcc}
+  </style>
 </head>
-
 <body>
-    <main>
-        <h1>Quyền Riêng Tư Của Người Dùng</h1>
-        <p>Bạn có thể yêu cầu <b>xóa tài khoản</b> hoặc <b>xóa dữ liệu cá nhân</b> liên quan đến ứng dụng TDStudio Game.
-        </p>
+  <main role="main">
+    <h1 data-i18n="heading">User Privacy Choices</h1>
+    <p data-i18n-html="intro_text">
+      You can request <b>account deletion</b> or <b>personal data removal</b> related to the TDStudio Game app.
+    </p>
 
-        <div class="card">
-            <h2>Cách gửi yêu cầu</h2>
-            <p>Vui lòng liên hệ qua email:
-                <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a><br>
-                Hoặc dùng form hỗ trợ:
-                <a href="https://thanhdi.top/contact.html">thanhdi.top/contact.html</a>
-            </p>
-            <p>Chúng tôi sẽ xử lý yêu cầu trong vòng tối đa 30 ngày.</p>
-        </div>
+    <div class="card">
+      <h2 data-i18n="method_title">How to submit a request</h2>
+      <p data-i18n-html="method_text">
+        Please contact us via email:
+        <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a><br>
+        Or use the support form:
+        <a href="https://thanhdi.top/contact.html">thanhdi.top/contact.html</a>
+      </p>
+      <p data-i18n="sla_text">We will process your request within 30 days.</p>
+    </div>
 
-        <h2>English (short)</h2>
-        <p>
-            You can request <b>account deletion</b> or <b>personal data removal</b> related to TDStudio Game.<br><br>
-            Contact us at: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a><br>
-            Or use the support form: <a href="https://thanhdi.top/contact.html">thanhdi.top/contact.html</a><br><br>
-            Requests will be processed within 30 days.
-        </p>
+    <!-- Show a compact English-only block when lang=en -->
+    <div class="card" data-show-if-lang="en">
+      <h2 data-i18n="short_title">English (short)</h2>
+      <p data-i18n-html="short_text">
+        Request <b>account deletion</b> or <b>data removal</b> → Email
+        <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a> or use
+        <a href="https://thanhdi.top/contact.html">support form</a>. Processed within 30 days.
+      </p>
+    </div>
 
-        <footer>
-            <p>© 2025 Thanh Di's Gaming Studio — All rights reserved.</p>
-        </footer>
-    </main>
+    <footer>
+      <p>© <span id="year"></span> Thanh Di's Gaming Studio — All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function(){
+      const supported = ['vi','en'];
+      const urlLang = new URLSearchParams(location.search).get('lang');
+      const raw = urlLang || (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+      const lang = (raw||'en').toLowerCase().split('-')[0];
+      const active = supported.includes(lang) ? lang : 'en';
+
+      const i18n = {
+        vi: {
+          title: 'Quyền Riêng Tư Của Người Dùng – TDStudio Game',
+          heading: 'Quyền Riêng Tư Của Người Dùng',
+          intro_text: 'Bạn có thể yêu cầu <b>xóa tài khoản</b> hoặc <b>xóa dữ liệu cá nhân</b> liên quan đến ứng dụng TDStudio Game.',
+          method_title: 'Cách gửi yêu cầu',
+          method_text: 'Vui lòng liên hệ qua email: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a><br>Hoặc dùng biểu mẫu hỗ trợ: <a href="https://thanhdi.top/contact.html">thanhdi.top/contact.html</a>',
+          sla_text: 'Chúng tôi sẽ xử lý yêu cầu trong vòng tối đa 30 ngày.',
+          short_title: 'Tiếng Việt (tóm tắt)',
+          short_text: 'Yêu cầu <b>xóa tài khoản</b> hoặc <b>xóa dữ liệu</b> → Email <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a> hoặc <a href="https://thanhdi.top/contact.html">biểu mẫu</a>. Xử lý trong 30 ngày.'
+        },
+        en: {
+          title: 'User Privacy Choices – TDStudio Game',
+          heading: 'User Privacy Choices',
+          intro_text: 'You can request <b>account deletion</b> or <b>personal data removal</b> related to the TDStudio Game app.',
+          method_title: 'How to submit a request',
+          method_text: 'Please contact us via email: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a><br>Or use the support form: <a href="https://thanhdi.top/contact.html">thanhdi.top/contact.html</a>',
+          sla_text: 'We will process your request within 30 days.',
+          short_title: 'English (short)',
+          short_text: 'Request <b>account deletion</b> or <b>data removal</b> → Email <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a> or <a href="https://thanhdi.top/contact.html">support form</a>. Processed within 30 days.'
+        }
+      };
+
+      // Apply lang + title
+      document.documentElement.lang = active;
+      document.title = i18n[active].title;
+
+      // Apply text (plain vs html)
+      const dict = i18n[active];
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k = el.getAttribute('data-i18n');
+        if (dict[k]) el.textContent = dict[k];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+        const k = el.getAttribute('data-i18n-html');
+        if (dict[k]) el.innerHTML = dict[k];
+      });
+
+      // Show/hide short block
+      document.querySelectorAll('[data-show-if-lang]').forEach(el=>{
+        const only = el.getAttribute('data-show-if-lang');
+        el.style.display = only === active ? '' : 'none';
+      });
+
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
-
 </html>
