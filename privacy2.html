@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TDStudio – Trang chủ chính thức</title>
+  <title>TDStudio – Privacy Policy</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/ph.css">
   <meta property="og:image" content="https://nroclan.com/static/sonic/img/ok.png?v=112">
@@ -14,160 +13,103 @@
   <meta property="og:image:type" content="image/png">
 </head>
 
-<body>
+<body data-page="privacy">
+  <!-- Appbar giữ nguyên form trang chủ -->
   <header class="appbar">
-    <a class="brand" href="#" aria-label="TDStudio Home">
+    <a class="brand" href="./" aria-label="TDStudio Home">
       <img src="assets/logo.png" alt="TDStudio" />
     </a>
-    <a class="login-btn" href="./">Đăng nhập</a>
+    <a class="login-btn" href="./">Login</a>
   </header>
 
   <main class="page">
+    <!-- Hero giống trang chủ, chỉ khác nội dung -->
     <section class="hero">
-      <img src="assets/banner.png" alt="Sự kiện nổi bật" />
-      <div class="hero__quick">
-        
-      </div>
+      <img src="assets/banner.png?v=12" alt="TDStudio" />
+      <h1 data-i18n="heading">Chính Sách Quyền Riêng Tư</h1>
+      <p data-i18n="updated"></p>
     </section>
+
+    <!-- Nội dung Privacy (dạng thẻ card cùng style với site) -->
     <section class="section">
-      <div class="section__head">
-        <h2>GAME ĐỀ XUẤT</h2>
-        <a class="see-all" href="https://thanhdi.top/games" target="_blank">Xem tất cả <span class="arrow">›</span></a>
+      <div class="card">
+        <span class="tag" data-i18n="summary_title"></span>
+        <p data-i18n="summary_text"></p>
       </div>
 
-      <div class="cards">
-        <a class="card" href="https://nroclan.com" target="_blank">
-          <div class="card__thumb">
-            <img src="assets/1.png" alt="Ngọc Rồng Clan" />
-            <span class="tag hot">SERVER 1</span>
-          </div>
-          <h3 class="card__title">Ngọc Rồng Clan</h3>
-          <div class="card__meta">GAME HOT</div>
-        </a>
+      <div class="card">
+        <h2 data-i18n="scope_title"></h2>
+        <p data-i18n="scope_text"></p>
 
-        <a class="card" href="https://nro3q.com" target="_blank">
-          <div class="card__thumb">
-            <img src="assets/2.png" alt="Ngọc Rồng 3Q" />
-            <span class="tag hot">SERVER 2</span>
-          </div>
-          <h3 class="card__title">Ngọc Rồng 3Q</h3>
-          <div class="card__meta">GAME HOT</div>
-        </a>
+        <h2 data-i18n="data_title"></h2>
+        <ul class="list">
+          <li id="data_user"></li>
+          <li data-i18n="data_game"></li>
+          <li data-i18n="data_diagnostics"></li>
+        </ul>
 
-        <a class="card" href="https://nromun.com" target="_blank">
-          <div class="card__thumb">
-            <img src="assets/3.png" alt="Ngọc Rồng Mun" />
-            <span class="tag hot">SERVER 3</span>
-          </div>
-          <h3 class="card__title">Ngọc Rồng Mun</h3>
-          <div class="card__meta">GAME HOT</div>
-        </a>
+        <h2 data-i18n="rights_title"></h2>
+        <p data-i18n="rights_text"></p>
 
-        <a class="card" href="https://nrogping.com" target="_blank">
-          <div class="card__thumb">
-            <img src="assets/4.png" alt="Ngọc Rồng Ping" />
-            <span class="tag hot">SERVER 4</span>
-          </div>
-          <h3 class="card__title">Ngọc Rồng Ping</h3>
-          <div class="card__meta">GAME HOT</div>
-        </a>
+        <h2 data-i18n="contact_title"></h2>
+        <p data-i18n="contact_text"></p>
 
-        <a class="card" href="https://nrokid.com" target="_blank">
-          <div class="card__thumb">
-            <img src="assets/5.png" alt="Ngọc Rồng Kid" />
-            <span class="tag hot">SERVER 5</span>
-          </div>
-          <h3 class="card__title">Ngọc Rồng Kid</h3>
-          <div class="card__meta">GAME HOT</div>
-        </a>
+        <h2 data-i18n="changes_title"></h2>
+        <p data-i18n="changes_text"></p>
+
+        <h2 data-i18n="short_title"></h2>
+        <p data-i18n="short_text"></p>
       </div>
     </section>
-    <!-- News / Posts -->
-    <section class="section section-news">
-      <div class="section__head">
-        <h2>TIN TỨC</h2>
-        <a class="see-all" href="#" id="seeAllPosts">Xem tất cả <span class="arrow">›</span></a>
-      </div>
 
-      <div id="posts" class="posts"></div>
-
-      <div class="news__actions">
-        <button class="btn" id="loadMorePosts">Tải thêm</button>
-      </div>
-    </section>
-    <!-- ===== Footer ===== -->
+    <!-- Footer giữ nguyên form -->
     <footer class="footer">
       <img src="assets/logo.png" alt="TDStudio" class="footer-logo">
       <p class="footer-contact">
-        Contact: <a href="https://www.facebook.com/ngocrongnthevmax">Fanpage</a> ·
+        Contact: <a href="https://www.facebook.com/ngocrongnthevmax" target="_blank" rel="noopener">Fanpage</a> ·
         Email: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a>
       </p>
-      <p class="footer-text small">
-        TDStudio is an indie team creating unique and fun games. We focus on engaging gameplay, original art, and
-        ongoing improvements for players.
-      </p>
-      <p class="footer-copy">
-        © 2025 ThanhDi Studio – All rights reserved.
-      </p>
+      <p class="footer-text small" data-i18n="footer_note">Chính sách minh bạch — đơn giản, dễ hiểu.</p>
+      <p class="footer-copy">© <span id="year"></span> ThanhDi Studio – All rights reserved.</p>
     </footer>
   </main>
 
+  <!-- Bottom Nav giống trang chủ -->
   <nav
     style="position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);background:linear-gradient(180deg,rgba(20,22,33,.95),rgba(20,22,33,.95));border-top:1px solid rgba(255,255,255,.08);padding:6px 6px calc(10px + env(safe-area-inset-bottom));z-index:50;">
-
-    <!-- Fanpage -->
     <a href="https://www.facebook.com/ngocrongnthevmax" target="_blank"
-      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
-      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
-        <path
-          d="M128 24a104 104 0 1 0 104 104A104.2 104.2 0 0 0 128 24Zm20 112h-12v48a8 8 0 0 1-16 0v-48h-8a8 8 0 0 1 0-16h8v-8c0-15.5 9.9-28 24-28h12a8 8 0 0 1 0 16h-12c-4.3 0-8 4.5-8 12v8h12a8 8 0 0 1 0 16Z" />
-      </svg>
+       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;"><path d="M128 24a104 104 0 1 0 104 104A104.2 104.2 0 0 0 128 24Zm20 112h-12v48a8 8 0 0 1-16 0v-48h-8a8 8 0 0 1 0-16h8v-8c0-15.5 9.9-28 24-28h12a8 8 0 0 1 0 16h-12c-4.3 0-8 4.5-8 12v8h12a8 8 0 0 1 0 16Z"/></svg>
       <span>Fanpage</span>
     </a>
 
-    <!-- Giftcode -->
     <a href="./" id="btnGiftcode"
-      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
-      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
-        <path
-          d="M208 72h-21.1a36 36 0 1 0-58.9-40.6A36 36 0 1 0 69.1 72H48a16 16 0 0 0-16 16v32a8 8 0 0 0 8 8h8v88a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-88h8a8 8 0 0 0 8-8V88a16 16 0 0 0-16-16Zm-56-24a20 20 0 1 1-20 20 20 20 0 0 1 20-20Zm-64 0a20 20 0 1 1-20 20 20 20 0 0 1 20-20ZM128 216H80v-88h48Zm48 0h-32v-88h32Zm32-104H48V88h160Z" />
-      </svg>
+       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;"><path d="M208 72h-21.1a36 36 0 1 0-58.9-40.6A36 36 0 1 0 69.1 72H48a16 16 0 0 0-16 16v32a8 8 0 0 0 8 8h8v88a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-88h8a8 8 0 0 0 8-8V88a16 16 0 0 0-16-16Zm-56-24a20 20 0 1 1-20 20 20 20 0 0 1 20-20Zm-64 0a20 20 0 1 1-20 20 20 20 0 0 1 20-20ZM128 216H80v-88h48Zm48 0h-32v-88h32Zm32-104H48V88h160Z"/></svg>
       <span>Giftcode</span>
     </a>
 
-    <!-- Trang chủ (active) -->
     <a href="./"
-      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#fff;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);">
-      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
-        <path
-          d="M218.8 106.3 136 34.7a15.9 15.9 0 0 0-21.1 0l-82.7 71.6A16 16 0 0 0 24 118.3V208a16 16 0 0 0 16 16h56a8 8 0 0 0 8-8v-56h48v56a8 8 0 0 0 8 8h56a16 16 0 0 0 16-16v-89.7a16 16 0 0 0-5.2-11.3Z" />
-      </svg>
-      <span>Trang chủ</span>
+       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#fff;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;"><path d="M218.8 106.3 136 34.7a15.9 15.9 0 0 0-21.1 0l-82.7 71.6A16 16 0 0 0 24 118.3V208a16 16 0 0 0 16 16h56a8 8 0 0 0 8-8v-56h48v56a8 8 0 0 0 8 8h56a16 16 0 0 0 16-16v-89.7a16 16 0 0 0-5.2-11.3Z"/></svg>
+      <span>Home</span>
     </a>
 
-    <!-- Liên Hệ -->
     <a href="https://thanhdi.top/contact.html"
-      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
-      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
-        <path
-          d="M221.6 158.5a54.3 54.3 0 0 0-43.5-21.4 55.8 55.8 0 0 0-17.8 2.9 8.4 8.4 0 0 0-5.1 10.1l10.1 35.2a4 4 0 0 1-1 3.9l-11.5 11.6a152.5 152.5 0 0 1-60.3-60.3l11.6-11.5a4 4 0 0 1 3.9-1l35.2 10.1a8.4 8.4 0 0 0 10.1-5.1A55.8 55.8 0 0 0 118.9 78a54.3 54.3 0 0 0-21.4-43.5 12.3 12.3 0 0 0-13.5-1.6l-28 12.7a16.2 16.2 0 0 0-8.9 11.6C37 88.5 42 139 84 181s92.5 47 123.8 37.1a16.2 16.2 0 0 0 11.6-8.9l12.7-28a12.3 12.3 0 0 0-1.5-13.7Z" />
-      </svg>
-      <span>Liên Hệ</span>
+       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;"><path d="M221.6 158.5a54.3 54.3 0 0 0-43.5-21.4 55.8 55.8 0 0 0-17.8 2.9 8.4 8.4 0 0 0-5.1 10.1l10.1 35.2a4 4 0 0 1-1 3.9l-11.5 11.6a152.5 152.5 0 0 1-60.3-60.3l11.6-11.5a4 4 0 0 1 3.9-1l35.2 10.1a8.4 8.4 0 0 0 10.1-5.1A55.8 55.8 0 0 0 118.9 78a54.3 54.3 0 0 0-21.4-43.5 12.3 12.3 0 0 0-13.5-1.6l-28 12.7a16.2 16.2 0 0 0-8.9 11.6C37 88.5 42 139 84 181s92.5 47 123.8 37.1a16.2 16.2 0 0 0 11.6-8.9l12.7-28a12.3 12.3 0 0 0-1.5-13.7Z"/></svg>
+      <span>Contact</span>
     </a>
 
-    <!-- Privacy -->
     <a href="https://thanhdi.top/privacy.html"
-      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
-      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
-        <path
-          d="M208 40H48a8 8 0 0 0-8 8v56c0 88 77.2 119.4 85.1 122.5a7.7 7.7 0 0 0 5.8 0c7.9-3.1 85.1-34.5 85.1-122.5V48a8 8 0 0 0-8-8Zm-42.3 72.3-40 40a8.1 8.1 0 0 1-11.4 0l-20-20a8 8 0 0 1 11.4-11.4l14.3 14.4 34.3-34.4a8 8 0 0 1 11.4 11.4Z" />
-      </svg>
+       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;"><path d="M208 40H48a8 8 0 0 0-8 8v56c0 88 77.2 119.4 85.1 122.5a7.7 7.7 0 0 0 5.8 0c7.9-3.1 85.1-34.5 85.1-122.5V48a8 8 0 0 0-8-8Zm-42.3 72.3-40 40a8.1 8.1 0 0 1-11.4 0l-20-20a8 8 0 0 1 11.4-11.4l14.3 14.4 34.3-34.4a8 8 0 0 1 11.4 11.4Z"/></svg>
       <span>Privacy</span>
     </a>
   </nav>
 
-
-  <!-- Giftcode Modal -->
+  <!-- Toast + Modal có thể để nguyên nếu app.js đang dùng -->
+  <div class="toast" id="toast"></div>
   <div class="modal" id="giftcodeModal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal__backdrop" data-close="giftcode"></div>
     <div class="modal__dialog" role="document">
@@ -177,9 +119,7 @@
       </header>
       <div class="modal__body">
         <p class="muted">Nhấn <b>Copy</b> để sao chép nhanh mã.</p>
-        <ul class="gift-list" id="giftList">
-          <!-- app.js sẽ render các item vào đây -->
-        </ul>
+        <ul class="gift-list" id="giftList"></ul>
       </div>
       <footer class="modal__foot">
         <button class="btn" id="copyAllGift">Copy tất cả</button>
@@ -188,10 +128,12 @@
     </div>
   </div>
 
-  <!-- Toast nho nhỏ -->
-  <div class="toast" id="toast"></div>
+  <!-- Khởi tạo năm ở footer nếu app.js chưa set -->
+  <script>
+    const y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear();
+  </script>
 
+  <!-- Lấy ngôn ngữ từ lang.json qua app.js -->
   <script src="app.js"></script>
 </body>
-
 </html>

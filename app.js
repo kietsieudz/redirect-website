@@ -1,25 +1,47 @@
 
 async function initLang() {
   try {
-    // Tải file JSON tĩnh
     const res = await fetch('lang.json');
     const data = await res.json();
 
-    // Lấy lang từ trình duyệt (vd: "vi", "en", "jp")
-    const deviceLang = (navigator.language || navigator.userLanguage).split('-')[0];
+    // Lấy lang từ thiết bị
+    const deviceLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase().split('-')[0];
+    const lang = data[deviceLang] ? deviceLang : 'en';
+    document.documentElement.lang = lang;
 
-    // Fallback về tiếng Anh nếu không hỗ trợ
-    const selected = data[deviceLang] || data['en'];
+    const dict = data[lang];
 
-    // Gắn text lên DOM
-    document.getElementById('gamedexuat').textContent = selected.gamedexuat;
-    document.getElementById('xemtatca').textContent = selected.xemtatca;
-    document.getElementById('exit').textContent = selected.exit;
+    // Gắn theo data-i18n (ưu tiên vì có nhiều key và có HTML)
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (!key) return;
+      const val = dict[key];
+      if (val == null) return;
+      // Một số key có HTML (b, br, a, …) nên dùng innerHTML
+      el.innerHTML = val;
+    });
 
+    // Nếu vẫn muốn gắn theo ID cho vài chỗ đặc biệt (tùy trang có)
+    const byId = ['gamedexuat', 'xemtatca', 'exit', 'heading', 'updated'];
+    byId.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && dict[id] != null) {
+        // Với các ID này đa phần là text đơn giản
+        el.textContent = dict[id];
+      }
+    });
+
+    // Footer year
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
   } catch (err) {
-    console.error("Không tải được lang.json", err);
+    console.error('Không tải được lang.json', err);
   }
 }
+
+// Gọi sau khi DOM sẵn sàng
+document.addEventListener('DOMContentLoaded', initLang);
+
 
 // Chạy khi load xong trang
 initLang();
