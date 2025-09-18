@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +16,7 @@
 
 <body data-page="privacy">
   <header class="appbar">
-    <a class="brand" href="#" aria-label="TDStudio Home">
+    <a class="brand" href="./" aria-label="TDStudio Home">
       <img src="assets/logo.png" alt="TDStudio" />
     </a>
     <a class="login-btn" href="./">Login</a>
@@ -32,7 +33,9 @@
           <i class="ph ph-shield-check" aria-hidden="true"></i>
           Privacy Policy
         </h1>
-        <p class="hero__meta">Updated: 08/09/2025 — Privacy policy for TDStudio Game.</p>
+        <p class="hero__meta">
+          Updated: <span id="policyDate"></span> - Privacy policy for TDStudio.
+        </p>
       </div>
     </section>
 
@@ -57,7 +60,8 @@
         <ul class="list">
           <li><b>User ID:</b> username plus password stored as a secure hash (never in plain text).</li>
           <li><b>Gameplay:</b> progress, characters, and items stored on our servers for synchronization.</li>
-          <li><b>Diagnostics (optional):</b> crash logs and performance metrics used solely to fix bugs and improve stability.</li>
+          <li><b>Diagnostics (optional):</b> crash logs and performance metrics used solely to fix bugs and improve
+            stability.</li>
         </ul>
 
         <h2>Your Rights & Choices</h2>
@@ -105,7 +109,8 @@
     <a href="https://www.facebook.com/ngocrongnthevmax" target="_blank" rel="noopener"
       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
       <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;" aria-hidden="true">
-        <path d="M128 24a104 104 0 1 0 104 104A104.2 104.2 0 0 0 128 24Zm20 112h-12v48a8 8 0 0 1-16 0v-48h-8a8 8 0 0 1 0-16h8v-8c0-15.5 9.9-28 24-28h12a8 8 0 0 1 0 16h-12c-4.3 0-8 4.5-8 12v8h12a8 8 0 0 1 0 16Z"/>
+        <path
+          d="M128 24a104 104 0 1 0 104 104A104.2 104.2 0 0 0 128 24Zm20 112h-12v48a8 8 0 0 1-16 0v-48h-8a8 8 0 0 1 0-16h8v-8c0-15.5 9.9-28 24-28h12a8 8 0 0 1 0 16h-12c-4.3 0-8 4.5-8 12v8h12a8 8 0 0 1 0 16Z" />
       </svg>
       <span>Fanpage</span>
     </a>
@@ -114,7 +119,8 @@
     <a href="./" id="btnGiftcode"
       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
       <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;" aria-hidden="true">
-        <path d="M208 72h-21.1a36 36 0 1 0-58.9-40.6A36 36 0 1 0 69.1 72H48a16 16 0 0 0-16 16v32a8 8 0 0 0 8 8h8v88a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-88h8a8 8 0 0 0 8-8V88a16 16 0 0 0-16-16Zm-56-24a20 20 0 1 1-20 20 20 20 0 0 1 20-20Zm-64 0a20 20 0 1 1-20 20 20 20 0 0 1 20-20ZM128 216H80v-88h48Zm48 0h-32v-88h32Zm32-104H48V88h160Z"/>
+        <path
+          d="M208 72h-21.1a36 36 0 1 0-58.9-40.6A36 36 0 1 0 69.1 72H48a16 16 0 0 0-16 16v32a8 8 0 0 0 8 8h8v88a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-88h8a8 8 0 0 0 8-8V88a16 16 0 0 0-16-16Zm-56-24a20 20 0 1 1-20 20 20 20 0 0 1 20-20Zm-64 0a20 20 0 1 1-20 20 20 20 0 0 1 20-20ZM128 216H80v-88h48Zm48 0h-32v-88h32Zm32-104H48V88h160Z" />
       </svg>
       <span>Giftcode</span>
     </a>
@@ -123,7 +129,8 @@
     <a href="./"
       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#fff;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);">
       <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;" aria-hidden="true">
-        <path d="M218.8 106.3 136 34.7a15.9 15.9 0 0 0-21.1 0l-82.7 71.6A16 16 0 0 0 24 118.3V208a16 16 0 0 0 16 16h56a8 8 0 0 0 8-8v-56h48v56a8 8 0 0 0 8 8h56a16 16 0 0 0 16-16v-89.7a16 16 0 0 0-5.2-11.3Z"/>
+        <path
+          d="M218.8 106.3 136 34.7a15.9 15.9 0 0 0-21.1 0l-82.7 71.6A16 16 0 0 0 24 118.3V208a16 16 0 0 0 16 16h56a8 8 0 0 0 8-8v-56h48v56a8 8 0 0 0 8 8h56a16 16 0 0 0 16-16v-89.7a16 16 0 0 0-5.2-11.3Z" />
       </svg>
       <span>Home</span>
     </a>
@@ -132,7 +139,8 @@
     <a href="https://thanhdi.top/contact.html" target="_blank" rel="noopener"
       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
       <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;" aria-hidden="true">
-        <path d="M221.6 158.5a54.3 54.3 0 0 0-43.5-21.4 55.8 55.8 0 0 0-17.8 2.9 8.4 8.4 0 0 0-5.1 10.1l10.1 35.2a4 4 0 0 1-1 3.9l-11.5 11.6a152.5 152.5 0 0 1-60.3-60.3l11.6-11.5a4 4 0 0 1 3.9-1l35.2 10.1a8.4 8.4 0 0 0 10.1-5.1A55.8 55.8 0 0 0 118.9 78a54.3 54.3 0 0 0-21.4-43.5 12.3 12.3 0 0 0-13.5-1.6l-28 12.7a16.2 16.2 0 0 0-8.9 11.6C37 88.5 42 139 84 181s92.5 47 123.8 37.1a16.2 16.2 0 0 0 11.6-8.9l12.7-28a12.3 12.3 0 0 0-1.5-13.7Z"/>
+        <path
+          d="M221.6 158.5a54.3 54.3 0 0 0-43.5-21.4 55.8 55.8 0 0 0-17.8 2.9 8.4 8.4 0 0 0-5.1 10.1l10.1 35.2a4 4 0 0 1-1 3.9l-11.5 11.6a152.5 152.5 0 0 1-60.3-60.3l11.6-11.5a4 4 0 0 1 3.9-1l35.2 10.1a8.4 8.4 0 0 0 10.1-5.1A55.8 55.8 0 0 0 118.9 78a54.3 54.3 0 0 0-21.4-43.5 12.3 12.3 0 0 0-13.5-1.6l-28 12.7a16.2 16.2 0 0 0-8.9 11.6C37 88.5 42 139 84 181s92.5 47 123.8 37.1a16.2 16.2 0 0 0 11.6-8.9l12.7-28a12.3 12.3 0 0 0-1.5-13.7Z" />
       </svg>
       <span>Contact</span>
     </a>
@@ -141,7 +149,8 @@
     <a href="https://thanhdi.top/privacy.html"
       style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
       <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;" aria-hidden="true">
-        <path d="M208 40H48a8 8 0 0 0-8 8v56c0 88 77.2 119.4 85.1 122.5a7.7 7.7 0 0 0 5.8 0c7.9-3.1 85.1-34.5 85.1-122.5V48a8 8 0 0 0-8-8Zm-42.3 72.3-40 40a8.1 8.1 0 0 1-11.4 0l-20-20a8 8 0 0 1 11.4-11.4l14.3 14.4 34.3-34.4a8 8 0 0 1 11.4 11.4Z"/>
+        <path
+          d="M208 40H48a8 8 0 0 0-8 8v56c0 88 77.2 119.4 85.1 122.5a7.7 7.7 0 0 0 5.8 0c7.9-3.1 85.1-34.5 85.1-122.5V48a8 8 0 0 0-8-8Zm-42.3 72.3-40 40a8.1 8.1 0 0 1-11.4 0l-20-20a8 8 0 0 1 11.4-11.4l14.3 14.4 34.3-34.4a8 8 0 0 1 11.4 11.4Z" />
       </svg>
       <span>Privacy</span>
     </a>
@@ -152,5 +161,24 @@
     if (y) y.textContent = new Date().getFullYear();
   </script>
   <script src="app.js"></script>
+  <script>
+    // Set current year in footer
+    const h = document.getElementById('year');
+    if (h) h.textContent = new Date().getFullYear();
+
+    // Set today's date for policy updated
+    const d = document.getElementById('policyDate');
+    if (d) {
+      const today = new Date();
+      // Format: DD/MM/YYYY
+      const formatted =
+        String(today.getDate()).padStart(2, "0") + "/" +
+        String(today.getMonth() + 1).padStart(2, "0") + "/" +
+        today.getFullYear();
+      d.textContent = formatted;
+    }
+  </script>
+
 </body>
+
 </html>
