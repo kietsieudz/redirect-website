@@ -2,16 +2,16 @@
   "vi": {
     "gamedexuat": "GAME ĐỀ XUẤT",
     "xemtatca": "Xem tất cả",
-    "exit": "Thoát"
+    "tintuc": "TIN TỨC"
   },
   "en": {
     "gamedexuat": "RECOMMENDED GAME",
-    "xemtatca": "See all",
+    "tintuc": "NEWS",
     "exit": "Exit"
   },
   "id": {
     "gamedexuat": "GAME REKOMENDASI",
     "xemtatca": "Lihat semua",
-    "exit": "終了"
+    "tintuc": "BERITA"
   }
 }
