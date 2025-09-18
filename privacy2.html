@@ -1,221 +1,197 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Privacy Policy – TDStudio Game</title>
-    <meta name="color-scheme" content="light dark" />
-    <link rel="icon" type="image/x-icon" href="static/sonic/img/favicon_1.png">
-    <style>
-        :root {
-            --bg: #0b1020;
-            --card: rgba(255, 255, 255, .06);
-            --stroke: rgba(255, 255, 255, .15);
-            --text: #e7ecff;
-            --muted: #b5c0ffcc;
-            --ring: rgba(135, 150, 255, .25);
-            --shadow: 0 10px 30px rgba(0, 0, 0, .35)
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg: #f6f7fb;
-                --card: #ffffffd9;
-                --stroke: #e8eaf8;
-                --text: #101322;
-                --muted: #4b5277cc;
-                --ring: rgba(25, 77, 255, .18);
-                --shadow: 0 10px 30px rgba(12, 19, 66, .12)
-            }
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        body {
-            margin: 0;
-            font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial;
-            color: var(--text);
-            background:
-                radial-gradient(1200px 600px at -10% -20%, #5b8cff22 0, transparent 60%),
-                radial-gradient(1200px 600px at 110% -10%, #ff71c822 0, transparent 60%),
-                radial-gradient(900px 600px at 50% 120%, #21d4fd22 0, transparent 60%), var(--bg)
-        }
-
-        .wrap {
-            max-width: 1100px;
-            margin: auto;
-            padding: 48px 20px 28px
-        }
-
-        header h1 {
-            font-size: clamp(32px, 4vw, 54px);
-            margin: 0 0 8px
-        }
-
-        header p {
-            margin: 0 0 32px;
-            color: var(--muted)
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--stroke);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            padding: 20px;
-            margin-bottom: 18px
-        }
-
-        h2 {
-            margin: 12px 0;
-            font-size: 1.2rem
-        }
-
-        .tag {
-            display: inline-block;
-            border: 1px solid var(--stroke);
-            background: var(--card);
-            border-radius: 999px;
-            padding: 6px 10px;
-            font-size: .92rem;
-            color: var(--muted)
-        }
-
-        footer {
-            margin-top: 48px;
-            border-top: 1px dashed var(--stroke);
-            padding: 24px 0 8px;
-            display: grid;
-            gap: 8px;
-            color: var(--muted)
-        }
-
-        .foot-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: space-between;
-            align-items: center
-        }
-
-        .brand {
-            font-weight: 800;
-            color: var(--text)
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TDStudio – Trang chủ chính thức</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/ph.css">
+  <meta property="og:image" content="https://nroclan.com/static/sonic/img/ok.png?v=112">
+  <meta property="og:image:secure_url" content="https://nroclan.com/static/sonic/img/ok.png?v=112">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
 </head>
 
 <body>
-    <main class="wrap" role="main">
-        <header>
-            <h1 data-i18n="heading"></h1>
-            <p data-i18n="updated"></p>
-        </header>
+  <header class="appbar">
+    <a class="brand" href="#" aria-label="TDStudio Home">
+      <img src="assets/logo.png" alt="TDStudio" />
+    </a>
+    <a class="login-btn" href="./">Đăng nhập</a>
+  </header>
 
-        <!-- Summary -->
-        <section class="card">
-            <span class="tag" data-i18n="summary_title"></span>
-            <p data-i18n="summary_text"></p>
-        </section>
+  <main class="page">
+    <section class="hero">
+      <img src="assets/banner.png" alt="Sự kiện nổi bật" />
+      <div class="hero__quick">
+        
+      </div>
+    </section>
+    <section class="section">
+      <div class="section__head">
+        <h2>GAME ĐỀ XUẤT</h2>
+        <a class="see-all" href="https://thanhdi.top/games" target="_blank">Xem tất cả <span class="arrow">›</span></a>
+      </div>
 
-        <!-- Scope & Data -->
-        <section class="card">
-            <h2 data-i18n="scope_title"></h2>
-            <p data-i18n="scope_text"></p>
+      <div class="cards">
+        <a class="card" href="https://nroclan.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/1.png" alt="Ngọc Rồng Clan" />
+            <span class="tag hot">SERVER 1</span>
+          </div>
+          <h3 class="card__title">Ngọc Rồng Clan</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
 
-            <h2 data-i18n="data_title"></h2>
-            <ul>
-                <li data-i18n="data_user"></li>
-                <li data-i18n="data_game"></li>
-                <li data-i18n="data_diagnostics"></li>
-            </ul>
+        <a class="card" href="https://nro3q.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/2.png" alt="Ngọc Rồng 3Q" />
+            <span class="tag hot">SERVER 2</span>
+          </div>
+          <h3 class="card__title">Ngọc Rồng 3Q</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
 
-            <h2 data-i18n="rights_title"></h2>
-            <p data-i18n="rights_text"></p>
+        <a class="card" href="https://nromun.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/3.png" alt="Ngọc Rồng Mun" />
+            <span class="tag hot">SERVER 3</span>
+          </div>
+          <h3 class="card__title">Ngọc Rồng Mun</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
 
-            <h2 data-i18n="contact_title"></h2>
-            <p data-i18n="contact_text"></p>
+        <a class="card" href="https://nrogping.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/4.png" alt="Ngọc Rồng Ping" />
+            <span class="tag hot">SERVER 4</span>
+          </div>
+          <h3 class="card__title">Ngọc Rồng Ping</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
 
-            <h2 data-i18n="changes_title"></h2>
-            <p data-i18n="changes_text"></p>
+        <a class="card" href="https://nrokid.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/5.png" alt="Ngọc Rồng Kid" />
+            <span class="tag hot">SERVER 5</span>
+          </div>
+          <h3 class="card__title">Ngọc Rồng Kid</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
+      </div>
+    </section>
+    <!-- News / Posts -->
+    <section class="section section-news">
+      <div class="section__head">
+        <h2>TIN TỨC</h2>
+        <a class="see-all" href="#" id="seeAllPosts">Xem tất cả <span class="arrow">›</span></a>
+      </div>
 
-            <h2 data-i18n="short_title"></h2>
-            <p data-i18n="short_text"></p>
-        </section>
+      <div id="posts" class="posts"></div>
 
-        <!-- Footer -->
-        <footer>
-            <div class="foot-row">
-                <div class="brand">Thanh Di's Gaming Studio</div>
-                <p data-i18n="footer_note"></p>
-            </div>
-            <small>© <span id="year"></span> Thanh Di's Gaming Studio — All rights reserved.</small>
-        </footer>
-    </main>
+      <div class="news__actions">
+        <button class="btn" id="loadMorePosts">Tải thêm</button>
+      </div>
+    </section>
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <img src="assets/logo.png" alt="TDStudio" class="footer-logo">
+      <p class="footer-contact">
+        Contact: <a href="https://www.facebook.com/ngocrongnthevmax">Fanpage</a> ·
+        Email: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a>
+      </p>
+      <p class="footer-text small">
+        TDStudio is an indie team creating unique and fun games. We focus on engaging gameplay, original art, and
+        ongoing improvements for players.
+      </p>
+      <p class="footer-copy">
+        © 2025 ThanhDi Studio – All rights reserved.
+      </p>
+    </footer>
+  </main>
 
-    <script>
-        (function () {
-            const supported = ['vi', 'en'];
-            const raw = (navigator.languages && navigator.languages[0]) || navigator.language || 'vi';
-            const lang = (raw || 'vi').toLowerCase().split('-')[0];
-            document.documentElement.lang = supported.includes(lang) ? lang : 'en';
+  <nav
+    style="position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);background:linear-gradient(180deg,rgba(20,22,33,.95),rgba(20,22,33,.95));border-top:1px solid rgba(255,255,255,.08);padding:6px 6px calc(10px + env(safe-area-inset-bottom));z-index:50;">
 
-            const i18n = {
-                vi: {
-                    heading: 'Chính Sách Quyền Riêng Tư',
-                    updated: 'Cập nhật: 08/09/2025 – Chính sách cho ứng dụng TDStudio Game.',
-                    summary_title: 'Tóm tắt',
-                    summary_text: 'Chúng tôi chỉ lưu <b>tài khoản (username + mật khẩu dạng hash)</b> và <b>dữ liệu nhân vật trong game</b> (tiến trình, vật phẩm, thành tích). Không thu email/sđt, không SDK quảng cáo.',
-                    scope_title: 'Phạm vi áp dụng',
-                    scope_text: 'Áp dụng cho toàn bộ ứng dụng TDStudio Game phát hành trên iOS bởi Thanh Di’s Gaming Studio.',
-                    data_title: 'Dữ liệu chúng tôi xử lý',
-                    data_user: '<b>User ID:</b> username + mật khẩu (lưu bằng hash, không lưu plain text).',
-                    data_game: '<b>Gameplay content:</b> tiến trình, nhân vật, vật phẩm trong game, lưu trên server để đồng bộ.',
-                    data_diagnostics: '<b>Diagnostics (tùy chọn):</b> crash log và hiệu năng, chỉ dùng để sửa lỗi và cải thiện.',
-                    rights_title: 'Quyền và lựa chọn của bạn',
-                    rights_text: 'Bạn có quyền yêu cầu <b>xóa tài khoản và toàn bộ dữ liệu</b>. Gỡ app sẽ xóa dữ liệu cục bộ; dữ liệu trên server sẽ xóa khi bạn yêu cầu.',
-                    contact_title: 'Liên hệ',
-                    contact_text: 'Email: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a> · Form: <a href="https://thanhdi.top/contact.html">thanhdi.top/contact.html</a>',
-                    changes_title: 'Thay đổi chính sách',
-                    changes_text: 'Nếu trong tương lai cần thêm dữ liệu hoặc SDK, chúng tôi sẽ cập nhật trang này trước khi phát hành.',
-                    short_title: 'English (tóm tắt)',
-                    short_text: '<b>We collect only User ID and gameplay content.</b><br>– Username + password (hashed, never plain text)<br>– Gameplay data (progress, items) stored on our server<br>– Crash data (optional), used only to fix bugs<br>We do not collect email, phone number, or use third-party advertising SDKs.<br>Contact: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a>',
-                    footer_note: 'Chính sách minh bạch — đơn giản, dễ hiểu.'
-                },
-                en: {
-                    heading: 'Privacy Policy',
-                    updated: 'Updated: 08/09/2025 – Privacy policy for TDStudio Game.',
-                    summary_title: 'Summary',
-                    summary_text: 'We only store <b>account (username + hashed password)</b> and <b>gameplay data</b> (progress, items, achievements). We do not collect email/phone, and no ad SDKs are integrated.',
-                    scope_title: 'Scope',
-                    scope_text: 'Applies to all versions of TDStudio Game released on iOS by Thanh Di’s Gaming Studio.',
-                    data_title: 'Data We Process',
-                    data_user: '<b>User ID:</b> username + password (stored hashed, never plain text).',
-                    data_game: '<b>Gameplay content:</b> progress, characters, items stored on server for sync.',
-                    data_diagnostics: '<b>Diagnostics (optional):</b> crash logs and performance data, only for fixing bugs.',
-                    rights_title: 'Your Rights & Choices',
-                    rights_text: 'You have the right to request <b>account and data deletion</b>. Local data is erased when uninstalling; server data is erased upon request.',
-                    contact_title: 'Contact',
-                    contact_text: 'Email: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a> · Form: <a href="https://thanhdi.top/contact.html">thanhdi.top/contact.html</a>',
-                    changes_title: 'Policy Changes',
-                    changes_text: 'If future versions require more data or SDKs, we will update this page before release.',
-                    short_title: 'English (short)',
-                    short_text: '<b>We collect only User ID and gameplay content.</b><br>– Username + password (hashed, never plain text)<br>– Gameplay data (progress, items) stored on our server<br>– Crash data (optional), used only to fix bugs<br>We do not collect email, phone number, or use third-party advertising SDKs.<br>Contact: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a>',
-                    footer_note: 'Transparent privacy policy — simple, clear.'
-                }
-            };
+    <!-- Fanpage -->
+    <a href="https://www.facebook.com/ngocrongnthevmax" target="_blank"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M128 24a104 104 0 1 0 104 104A104.2 104.2 0 0 0 128 24Zm20 112h-12v48a8 8 0 0 1-16 0v-48h-8a8 8 0 0 1 0-16h8v-8c0-15.5 9.9-28 24-28h12a8 8 0 0 1 0 16h-12c-4.3 0-8 4.5-8 12v8h12a8 8 0 0 1 0 16Z" />
+      </svg>
+      <span>Fanpage</span>
+    </a>
 
-            const dict = i18n[supported.includes(lang) ? lang : 'en'];
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (dict[key]) el.innerHTML = dict[key];
-            });
-            document.getElementById('year').textContent = new Date().getFullYear();
-        })();
-    </script>
+    <!-- Giftcode -->
+    <a href="./" id="btnGiftcode"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M208 72h-21.1a36 36 0 1 0-58.9-40.6A36 36 0 1 0 69.1 72H48a16 16 0 0 0-16 16v32a8 8 0 0 0 8 8h8v88a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-88h8a8 8 0 0 0 8-8V88a16 16 0 0 0-16-16Zm-56-24a20 20 0 1 1-20 20 20 20 0 0 1 20-20Zm-64 0a20 20 0 1 1-20 20 20 20 0 0 1 20-20ZM128 216H80v-88h48Zm48 0h-32v-88h32Zm32-104H48V88h160Z" />
+      </svg>
+      <span>Giftcode</span>
+    </a>
+
+    <!-- Trang chủ (active) -->
+    <a href="./"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#fff;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M218.8 106.3 136 34.7a15.9 15.9 0 0 0-21.1 0l-82.7 71.6A16 16 0 0 0 24 118.3V208a16 16 0 0 0 16 16h56a8 8 0 0 0 8-8v-56h48v56a8 8 0 0 0 8 8h56a16 16 0 0 0 16-16v-89.7a16 16 0 0 0-5.2-11.3Z" />
+      </svg>
+      <span>Trang chủ</span>
+    </a>
+
+    <!-- Liên Hệ -->
+    <a href="https://thanhdi.top/contact.html"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M221.6 158.5a54.3 54.3 0 0 0-43.5-21.4 55.8 55.8 0 0 0-17.8 2.9 8.4 8.4 0 0 0-5.1 10.1l10.1 35.2a4 4 0 0 1-1 3.9l-11.5 11.6a152.5 152.5 0 0 1-60.3-60.3l11.6-11.5a4 4 0 0 1 3.9-1l35.2 10.1a8.4 8.4 0 0 0 10.1-5.1A55.8 55.8 0 0 0 118.9 78a54.3 54.3 0 0 0-21.4-43.5 12.3 12.3 0 0 0-13.5-1.6l-28 12.7a16.2 16.2 0 0 0-8.9 11.6C37 88.5 42 139 84 181s92.5 47 123.8 37.1a16.2 16.2 0 0 0 11.6-8.9l12.7-28a12.3 12.3 0 0 0-1.5-13.7Z" />
+      </svg>
+      <span>Liên Hệ</span>
+    </a>
+
+    <!-- Privacy -->
+    <a href="https://thanhdi.top/privacy.html"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M208 40H48a8 8 0 0 0-8 8v56c0 88 77.2 119.4 85.1 122.5a7.7 7.7 0 0 0 5.8 0c7.9-3.1 85.1-34.5 85.1-122.5V48a8 8 0 0 0-8-8Zm-42.3 72.3-40 40a8.1 8.1 0 0 1-11.4 0l-20-20a8 8 0 0 1 11.4-11.4l14.3 14.4 34.3-34.4a8 8 0 0 1 11.4 11.4Z" />
+      </svg>
+      <span>Privacy</span>
+    </a>
+  </nav>
+
+
+  <!-- Giftcode Modal -->
+  <div class="modal" id="giftcodeModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__backdrop" data-close="giftcode"></div>
+    <div class="modal__dialog" role="document">
+      <header class="modal__head">
+        <h3>Giftcode</h3>
+        <button class="icon-btn close" aria-label="Đóng" data-close="giftcode">×</button>
+      </header>
+      <div class="modal__body">
+        <p class="muted">Nhấn <b>Copy</b> để sao chép nhanh mã.</p>
+        <ul class="gift-list" id="giftList">
+          <!-- app.js sẽ render các item vào đây -->
+        </ul>
+      </div>
+      <footer class="modal__foot">
+        <button class="btn" id="copyAllGift">Copy tất cả</button>
+        <button class="btn btn-ghost" data-close="giftcode">Đóng</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Toast nho nhỏ -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
 </body>
 
 </html>

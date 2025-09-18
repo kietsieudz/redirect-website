@@ -1,3 +1,29 @@
+
+async function initLang() {
+  try {
+    // Tải file JSON tĩnh
+    const res = await fetch('lang.json');
+    const data = await res.json();
+
+    // Lấy lang từ trình duyệt (vd: "vi", "en", "jp")
+    const deviceLang = (navigator.language || navigator.userLanguage).split('-')[0];
+
+    // Fallback về tiếng Anh nếu không hỗ trợ
+    const selected = data[deviceLang] || data['en'];
+
+    // Gắn text lên DOM
+    document.getElementById('gamedexuat').textContent = selected.gamedexuat;
+    document.getElementById('xemtatca').textContent = selected.xemtatca;
+    document.getElementById('exit').textContent = selected.exit;
+
+  } catch (err) {
+    console.error("Không tải được lang.json", err);
+  }
+}
+
+// Chạy khi load xong trang
+initLang();
+
 // Chỉ giữ logic nhỏ cho tabbar (không có sidebar)
 document.addEventListener('DOMContentLoaded', () => {
   const tabs = document.querySelectorAll('.tabbar__item');

@@ -4,26 +4,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vplay – Trang chủ</title>
+  <title>TDStudio – Trang chủ chính thức</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/ph.css">
-
+  <meta property="og:image" content="https://nroclan.com/static/sonic/img/ok.png?v=112">
+  <meta property="og:image:secure_url" content="https://nroclan.com/static/sonic/img/ok.png?v=112">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
 </head>
 
 <body>
-  <!-- Header tối giản, không có menu sidebar -->
   <header class="appbar">
-    <a class="brand" href="#" aria-label="Vplay Home">
-      <img src="assets/logo.png" alt="Vplay" />
+    <a class="brand" href="#" aria-label="TDStudio Home">
+      <img src="assets/logo.png" alt="TDStudio" />
     </a>
-    <a class="login-btn" href="./">Đăng nhập</a>
+    <a class="login-btn" href="./">Login</a>
   </header>
 
   <main class="page">
-    <!-- Hero banner -->
-    <!-- Import Phosphor Icons trong <head> nếu chưa có -->
-
-
     <section class="hero">
       <img src="assets/banner.png" alt="Sự kiện nổi bật" />
       <div class="hero__quick">
@@ -70,7 +69,7 @@
             <path
               d="M22 16.9v2a2 2 0 0 1-2.2 2 19 19 0 0 1-8.3-3.1 19 19 0 0 1-6-6 19 19 0 0 1-3.1-8.3A2 2 0 0 1 4.4 1.2h2A2 2 0 0 1 8.3 2.7L9 5.9a2 2 0 0 1-.6 2L7.2 9.2a16 16 0 0 0 7.6 7.6l1.3-1.2a2 2 0 0 1 2-.5l3.2.7A2 2 0 0 1 22 16.9z" />
           </svg>
-          <span>Liên Hệ</span>
+          <span>Contact</span>
         </a>
 
         <!-- Privacy -->
@@ -84,20 +83,17 @@
         </a>
       </div>
     </section>
-
-
-    <!-- Suggested games -->
     <section class="section">
       <div class="section__head">
-        <h2>GAME ĐỀ XUẤT</h2>
-        <a class="see-all" href="https://thanhdi.top/games" target="_blank">Xem tất cả <span class="arrow">›</span></a>
+        <h2 id="gamedexuat">GAME ĐỀ XUẤT</h2>
+        <a class="see-all" href="https://thanhdi.top/games" target="_blank" id="xemtatca">Xem tất cả <span class="arrow">›</span></a>
       </div>
 
       <div class="cards">
         <a class="card" href="https://nroclan.com" target="_blank">
           <div class="card__thumb">
             <img src="assets/1.png" alt="Ngọc Rồng Clan" />
-            <span class="tag hot">HOT</span>
+            <span class="tag hot">SERVER 1</span>
           </div>
           <h3 class="card__title">Ngọc Rồng Clan</h3>
           <div class="card__meta">GAME HOT</div>
@@ -106,7 +102,7 @@
         <a class="card" href="https://nro3q.com" target="_blank">
           <div class="card__thumb">
             <img src="assets/2.png" alt="Ngọc Rồng 3Q" />
-            <span class="tag hot">HOT</span>
+            <span class="tag hot">SERVER 2</span>
           </div>
           <h3 class="card__title">Ngọc Rồng 3Q</h3>
           <div class="card__meta">GAME HOT</div>
@@ -115,7 +111,7 @@
         <a class="card" href="https://nromun.com" target="_blank">
           <div class="card__thumb">
             <img src="assets/3.png" alt="Ngọc Rồng Mun" />
-            <span class="tag hot">HOT</span>
+            <span class="tag hot">SERVER 3</span>
           </div>
           <h3 class="card__title">Ngọc Rồng Mun</h3>
           <div class="card__meta">GAME HOT</div>
@@ -124,7 +120,7 @@
         <a class="card" href="https://nrogping.com" target="_blank">
           <div class="card__thumb">
             <img src="assets/4.png" alt="Ngọc Rồng Ping" />
-            <span class="tag hot">HOT</span>
+            <span class="tag hot">SERVER 4</span>
           </div>
           <h3 class="card__title">Ngọc Rồng Ping</h3>
           <div class="card__meta">GAME HOT</div>
@@ -133,7 +129,7 @@
         <a class="card" href="https://nrokid.com" target="_blank">
           <div class="card__thumb">
             <img src="assets/5.png" alt="Ngọc Rồng Kid" />
-            <span class="tag hot">HOT</span>
+            <span class="tag hot">SERVER 5</span>
           </div>
           <h3 class="card__title">Ngọc Rồng Kid</h3>
           <div class="card__meta">GAME HOT</div>
@@ -155,7 +151,7 @@
     </section>
     <!-- ===== Footer ===== -->
     <footer class="footer">
-      <img src="assets/logo.png" alt="Vplay" class="footer-logo">
+      <img src="assets/logo.png" alt="TDStudio" class="footer-logo">
       <p class="footer-contact">
         Contact: <a href="https://www.facebook.com/ngocrongnthevmax">Fanpage</a> ·
         Email: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a>
@@ -200,7 +196,7 @@
         <path
           d="M218.8 106.3 136 34.7a15.9 15.9 0 0 0-21.1 0l-82.7 71.6A16 16 0 0 0 24 118.3V208a16 16 0 0 0 16 16h56a8 8 0 0 0 8-8v-56h48v56a8 8 0 0 0 8 8h56a16 16 0 0 0 16-16v-89.7a16 16 0 0 0-5.2-11.3Z" />
       </svg>
-      <span>Trang chủ</span>
+      <span>Home</span>
     </a>
 
     <!-- Liên Hệ -->
@@ -210,7 +206,7 @@
         <path
           d="M221.6 158.5a54.3 54.3 0 0 0-43.5-21.4 55.8 55.8 0 0 0-17.8 2.9 8.4 8.4 0 0 0-5.1 10.1l10.1 35.2a4 4 0 0 1-1 3.9l-11.5 11.6a152.5 152.5 0 0 1-60.3-60.3l11.6-11.5a4 4 0 0 1 3.9-1l35.2 10.1a8.4 8.4 0 0 0 10.1-5.1A55.8 55.8 0 0 0 118.9 78a54.3 54.3 0 0 0-21.4-43.5 12.3 12.3 0 0 0-13.5-1.6l-28 12.7a16.2 16.2 0 0 0-8.9 11.6C37 88.5 42 139 84 181s92.5 47 123.8 37.1a16.2 16.2 0 0 0 11.6-8.9l12.7-28a12.3 12.3 0 0 0-1.5-13.7Z" />
       </svg>
-      <span>Liên Hệ</span>
+      <span>Contact</span>
     </a>
 
     <!-- Privacy -->

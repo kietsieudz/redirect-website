@@ -1,0 +1,17 @@
+{
+  "vi": {
+    "gamedexuat": "GAME ĐỀ XUẤT",
+    "xemtatca": "Xem tất cả",
+    "exit": "Thoát"
+  },
+  "en": {
+    "gamedexuat": "RECOMMENDED GAME",
+    "xemtatca": "See all",
+    "exit": "Exit"
+  },
+  "id": {
+    "gamedexuat": "GAME REKOMENDASI",
+    "xemtatca": "Lihat semua",
+    "exit": "終了"
+  }
+}
