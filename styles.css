@@ -242,3 +242,114 @@ body.modal-open{ overflow:hidden; }
   opacity: 0.8;
 }
 
+/* ==========================
+   TDStudio — Privacy (scoped)
+   Chỉ áp dụng khi <body data-page="privacy">
+   ========================== */
+
+body[data-page="privacy"] .section{
+  max-width: 960px;
+  margin: 18px auto;
+  padding: 0;                /* để .card lo padding */
+}
+
+body[data-page="privacy"] .card{
+  background: linear-gradient(180deg, rgba(20,22,33,.88), rgba(20,22,33,.78));
+  border: 1px solid var(--ring);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 28px rgba(0,0,0,.35);
+  padding: 16px 14px;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+body[data-page="privacy"] .card + .card{
+  margin-top: 14px;
+}
+body[data-page="privacy"] .card:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(0,0,0,.4);
+}
+
+/* Tiêu đề trong card */
+body[data-page="privacy"] .card h2{
+  margin: 2px 0 8px;
+  font-size: clamp(18px, 2.6vw, 22px);
+  line-height: 1.25;
+  letter-spacing: .2px;
+  padding-left: 10px;
+  border-left: 4px solid rgba(255,255,255,.12);
+}
+
+/* Đoạn văn */
+body[data-page="privacy"] .card p{
+  margin: 8px 0 10px;
+  line-height: 1.7;
+  color: #e9ecf1;
+}
+
+/* Link trong phần policy */
+body[data-page="privacy"] .card a{
+  color: #b1c5ff;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(177,197,255,.35);
+}
+body[data-page="privacy"] .card a:hover{
+  border-bottom-color: rgba(177,197,255,.9);
+}
+
+/* List dữ liệu (ul.list) với bullet “check” */
+body[data-page="privacy"] .card .list{
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 4px;
+}
+body[data-page="privacy"] .card .list li{
+  position: relative;
+  margin: 10px 0;
+  padding-left: 28px;
+  line-height: 1.65;
+}
+body[data-page="privacy"] .card .list li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: .42em;
+  width: 18px; height: 18px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(110,231,183,.25), rgba(110,231,183,.12));
+  border: 1px solid rgba(110,231,183,.45);
+  box-shadow: inset 0 0 0 2px rgba(12,13,18,.65);
+}
+body[data-page="privacy"] .card .list li::after{
+  content: "";
+  position: absolute;
+  left: 5px; top: .67em;
+  width: 8px; height: 4px;
+  border-left: 2px solid #6ee7b7;
+  border-bottom: 2px solid #6ee7b7;
+  transform: rotate(-45deg);
+}
+
+/* Nhãn tóm tắt (tag) trong card đầu */
+body[data-page="privacy"] .card .tag{
+  background: rgba(255,255,255,.95);
+  color: #111827;
+  border: none;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* Footer trong trang privacy: tách nhịp với nội dung */
+body[data-page="privacy"] .footer{
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ring);
+}
+
+/* Khoảng dưới cùng để không đè tabbar */
+@media (max-width: 767px){
+  body[data-page="privacy"] .section:last-of-type{
+    margin-bottom: 96px; /* chừa chỗ cho .tabbar */
+  }
+}

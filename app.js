@@ -1,43 +1,55 @@
 
+// Thêm đủ mọi key liên quan trang Privacy + vài key chung
+const byId = [
+  'gamedexuat', 'xemtatca', 'tintuc', 'exit',
+  'heading', 'updated',
+  'summary_title', 'summary_text',
+  'scope_title', 'scope_text',
+  'data_title', 'data_user', 'data_game', 'data_diagnostics',
+  'rights_title', 'rights_text',
+  'contact_title', 'contact_text',
+  'changes_title', 'changes_text',
+  'short_title', 'short_text',
+  'footer_note'
+];
+
+// Các key có chứa HTML -> dùng innerHTML
+const HTML_KEYS = new Set([
+  'summary_text', 'scope_text',
+  'data_user', 'data_game', 'data_diagnostics',
+  'rights_text', 'contact_text',
+  'changes_text',
+  'short_text'
+]);
+
 async function initLang() {
   try {
     const res = await fetch('lang.json');
     const data = await res.json();
 
-    // Lấy lang từ thiết bị
-    const deviceLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase().split('-')[0];
+    const deviceLang = (navigator.language || navigator.userLanguage || 'en')
+      .toLowerCase().split('-')[0];
     const lang = data[deviceLang] ? deviceLang : 'en';
+    const dict = data[lang];
     document.documentElement.lang = lang;
 
-    const dict = data[lang];
-
-    // Gắn theo data-i18n (ưu tiên vì có nhiều key và có HTML)
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (!key) return;
-      const val = dict[key];
-      if (val == null) return;
-      // Một số key có HTML (b, br, a, …) nên dùng innerHTML
-      el.innerHTML = val;
+    // Gắn theo id (ưu tiên) hoặc theo data-i18n (fallback)
+    byId.forEach((key) => {
+      const el = document.getElementById(key) || document.querySelector(`[data-i18n="${key}"]`);
+      if (!el || dict[key] == null) return;
+      if (HTML_KEYS.has(key)) el.innerHTML = dict[key];
+      else el.textContent = dict[key];
     });
 
-    // Nếu vẫn muốn gắn theo ID cho vài chỗ đặc biệt (tùy trang có)
-    const byId = ['gamedexuat', 'xemtatca', 'exit', 'heading', 'updated'];
-    byId.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && dict[id] != null) {
-        // Với các ID này đa phần là text đơn giản
-        el.textContent = dict[id];
-      }
-    });
-
-    // Footer year
     const y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
   } catch (err) {
     console.error('Không tải được lang.json', err);
   }
 }
+
+document.addEventListener('DOMContentLoaded', initLang);
+
 
 // Gọi sau khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', initLang);
