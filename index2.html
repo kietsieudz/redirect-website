@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TDStudio – Home Page</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/ph.css">
+  <meta property="og:image" content="https://nroclan.com/static/sonic/img/ok.png?v=112">
+  <meta property="og:image:secure_url" content="https://nroclan.com/static/sonic/img/ok.png?v=112">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+</head>
+
+<body>
+  <header class="appbar">
+    <a class="brand" href="./" aria-label="TDStudio Home">
+      <img src="assets/logo.png" alt="TDStudio" />
+    </a>
+    <a class="login-btn" href="./">Login</a>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <img src="assets/banner.png?v=12" alt="Sự kiện nổi bật" />
+      <div class="hero__quick">
+        <!-- Fanpage -->
+        <a class="quick" href="https://www.facebook.com/ngocrongnthevmax" target="_blank">
+          <svg class="quick__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+            <path d="M14 8h-2.2A2.8 2.8 0 0 0 9 10.8V21"></path>
+            <path d="M10 13h3.8"></path>
+          </svg>
+          <span>Fanpage</span>
+        </a>
+
+        <!-- Giftcode -->
+        <a class="quick" href="#" id="btnGiftcode">
+          <svg class="quick__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="8" width="18" height="12" rx="2"></rect>
+            <path d="M3 12h18M12 8v12"></path>
+            <path
+              d="M7.5 6a2.5 2.5 0 1 1 5 0c0 1.4-2.5 2-2.5 2s-2.5-.6-2.5-2zM11.5 6A2.5 2.5 0 1 1 16 6c0 1.4-2.5 2-2.5 2">
+            </path>
+          </svg>
+          <span>Giftcode</span>
+        </a>
+
+        <!-- Groups -->
+        <a class="quick" href="https://www.facebook.com/groups/916049213653568">
+          <svg class="quick__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="8" r="3"></circle>
+            <path d="M2 20a7 7 0 0 1 14 0"></path>
+            <circle cx="17" cy="9" r="2.5"></circle>
+            <path d="M22 20a6 6 0 0 0-7-5"></path>
+          </svg>
+          <span>Groups</span>
+        </a>
+
+        <!-- Liên hệ -->
+        <a class="quick" href="https://thanhdi.top/contact.html">
+          <svg class="quick__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path
+              d="M22 16.9v2a2 2 0 0 1-2.2 2 19 19 0 0 1-8.3-3.1 19 19 0 0 1-6-6 19 19 0 0 1-3.1-8.3A2 2 0 0 1 4.4 1.2h2A2 2 0 0 1 8.3 2.7L9 5.9a2 2 0 0 1-.6 2L7.2 9.2a16 16 0 0 0 7.6 7.6l1.3-1.2a2 2 0 0 1 2-.5l3.2.7A2 2 0 0 1 22 16.9z" />
+          </svg>
+          <span>Contact</span>
+        </a>
+
+        <!-- Privacy -->
+        <a class="quick" href="privacy.html">
+          <svg class="quick__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2l7 3v6c0 5-3.5 9.5-7 11-3.5-1.5-7-6-7-11V5l7-3z"></path>
+            <path d="M9.5 12l2 2 3.5-3.5"></path>
+          </svg>
+          <span>Privacy</span>
+        </a>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section__head">
+        <h2 id="gamedexuat">GAME ĐỀ XUẤT</h2>
+        <a class="see-all" href="#" id="xemtatca">Xem tất cả <span
+            class="arrow">›</span></a>
+      </div>
+
+      <div class="cards">
+        <a class="card" href="https://nroclan.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/1.png" alt="Ngọc Rồng Clan" />
+            <span class="tag hot">HOT</span>
+          </div>
+          <h3 class="card__title">Server 1 (Clan)</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
+
+        <a class="card" href="https://nro3q.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/2.png" alt="Ngọc Rồng 3Q" />
+            <span class="tag hot">HOT</span>
+          </div>
+          <h3 class="card__title">Server 2 (3Q)</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
+
+        <a class="card" href="https://nromun.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/3.png" alt="Ngọc Rồng Mun" />
+            <span class="tag hot">HOT</span>
+          </div>
+          <h3 class="card__title">Server 3 (Mun)</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
+
+        <a class="card" href="https://nrogping.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/4.png" alt="Ngọc Rồng Ping" />
+            <span class="tag hot">HOT</span>
+          </div>
+          <h3 class="card__title">Server 4 (Ping)</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
+
+        <a class="card" href="https://nrokid.com" target="_blank">
+          <div class="card__thumb">
+            <img src="assets/5.png" alt="Ngọc Rồng Kid" />
+            <span class="tag hot">HOT</span>
+          </div>
+          <h3 class="card__title">Server 5 (Kid)</h3>
+          <div class="card__meta">GAME HOT</div>
+        </a>
+      </div>
+    </section>
+    <!-- News / Posts -->
+    <section class="section section-news">
+      <div class="section__head">
+        <h2>TIN TỨC</h2>
+        <a class="see-all" href="#" id="xemtatca">Xem tất cả <span class="arrow">›</span></a>
+      </div>
+
+      <div id="posts" class="posts"></div>
+
+      <div class="news__actions">
+        <button class="btn" id="loadMorePosts">Tải thêm</button>
+      </div>
+    </section>
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <img src="assets/logo.png" alt="TDStudio" class="footer-logo">
+      <p class="footer-contact">
+        Contact: <a href="https://www.facebook.com/ngocrongnthevmax">Fanpage</a> ·
+        Email: <a href="mailto:contact@thanhdi.top">contact@thanhdi.top</a>
+      </p>
+      <p class="footer-text small">
+        TDStudio is an indie team creating unique and fun games. We focus on engaging gameplay, original art, and
+        ongoing improvements for players.
+      </p>
+      <p class="footer-copy">
+        © 2025 ThanhDi Studio – All rights reserved.
+      </p>
+    </footer>
+  </main>
+
+  <nav
+    style="position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);background:linear-gradient(180deg,rgba(20,22,33,.95),rgba(20,22,33,.95));border-top:1px solid rgba(255,255,255,.08);padding:6px 6px calc(10px + env(safe-area-inset-bottom));z-index:50;">
+
+    <!-- Fanpage -->
+    <a href="https://www.facebook.com/ngocrongnthevmax" target="_blank"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M128 24a104 104 0 1 0 104 104A104.2 104.2 0 0 0 128 24Zm20 112h-12v48a8 8 0 0 1-16 0v-48h-8a8 8 0 0 1 0-16h8v-8c0-15.5 9.9-28 24-28h12a8 8 0 0 1 0 16h-12c-4.3 0-8 4.5-8 12v8h12a8 8 0 0 1 0 16Z" />
+      </svg>
+      <span>Fanpage</span>
+    </a>
+
+    <!-- Giftcode -->
+    <a href="./" id="btnGiftcode"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M208 72h-21.1a36 36 0 1 0-58.9-40.6A36 36 0 1 0 69.1 72H48a16 16 0 0 0-16 16v32a8 8 0 0 0 8 8h8v88a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16v-88h8a8 8 0 0 0 8-8V88a16 16 0 0 0-16-16Zm-56-24a20 20 0 1 1-20 20 20 20 0 0 1 20-20Zm-64 0a20 20 0 1 1-20 20 20 20 0 0 1 20-20ZM128 216H80v-88h48Zm48 0h-32v-88h32Zm32-104H48V88h160Z" />
+      </svg>
+      <span>Giftcode</span>
+    </a>
+
+    <!-- Trang chủ (active) -->
+    <a href="./"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#fff;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M218.8 106.3 136 34.7a15.9 15.9 0 0 0-21.1 0l-82.7 71.6A16 16 0 0 0 24 118.3V208a16 16 0 0 0 16 16h56a8 8 0 0 0 8-8v-56h48v56a8 8 0 0 0 8 8h56a16 16 0 0 0 16-16v-89.7a16 16 0 0 0-5.2-11.3Z" />
+      </svg>
+      <span>Home</span>
+    </a>
+
+    <!-- Liên Hệ -->
+    <a href="https://thanhdi.top/contact.html"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M221.6 158.5a54.3 54.3 0 0 0-43.5-21.4 55.8 55.8 0 0 0-17.8 2.9 8.4 8.4 0 0 0-5.1 10.1l10.1 35.2a4 4 0 0 1-1 3.9l-11.5 11.6a152.5 152.5 0 0 1-60.3-60.3l11.6-11.5a4 4 0 0 1 3.9-1l35.2 10.1a8.4 8.4 0 0 0 10.1-5.1A55.8 55.8 0 0 0 118.9 78a54.3 54.3 0 0 0-21.4-43.5 12.3 12.3 0 0 0-13.5-1.6l-28 12.7a16.2 16.2 0 0 0-8.9 11.6C37 88.5 42 139 84 181s92.5 47 123.8 37.1a16.2 16.2 0 0 0 11.6-8.9l12.7-28a12.3 12.3 0 0 0-1.5-13.7Z" />
+      </svg>
+      <span>Contact</span>
+    </a>
+
+    <!-- Privacy -->
+    <a href="https://thanhdi.top/privacy.html"
+      style="display:grid;place-items:center;gap:4px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px;font-size:12px;font-weight:500;">
+      <svg viewBox="0 0 256 256" style="width:22px;height:22px;fill:currentColor;">
+        <path
+          d="M208 40H48a8 8 0 0 0-8 8v56c0 88 77.2 119.4 85.1 122.5a7.7 7.7 0 0 0 5.8 0c7.9-3.1 85.1-34.5 85.1-122.5V48a8 8 0 0 0-8-8Zm-42.3 72.3-40 40a8.1 8.1 0 0 1-11.4 0l-20-20a8 8 0 0 1 11.4-11.4l14.3 14.4 34.3-34.4a8 8 0 0 1 11.4 11.4Z" />
+      </svg>
+      <span>Privacy</span>
+    </a>
+  </nav>
+
+
+  <!-- Giftcode Modal -->
+  <div class="modal" id="giftcodeModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal__backdrop" data-close="giftcode"></div>
+    <div class="modal__dialog" role="document">
+      <header class="modal__head">
+        <h3>Giftcode</h3>
+        <button class="icon-btn close" aria-label="Đóng" data-close="giftcode">×</button>
+      </header>
+      <div class="modal__body">
+        <p class="muted">Nhấn <b>Copy</b> để sao chép nhanh mã.</p>
+        <ul class="gift-list" id="giftList">
+          <!-- app.js sẽ render các item vào đây -->
+        </ul>
+      </div>
+      <footer class="modal__foot">
+        <button class="btn" id="copyAllGift">Copy tất cả</button>
+        <button class="btn btn-ghost" data-close="giftcode">Đóng</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Toast nho nhỏ -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+  <script>
+(function () {
+  // --- CẤU HÌNH NHANH ---
+  // Cho phép người dùng "Tiếp tục xem tại đây" (bỏ chặn tạm thời)?
+  var ALLOW_BYPASS = true; 
+  // Tắt hoàn toàn form khi dính in-app (an toàn cho bạn nếu form hay lỗi):
+  var DISABLE_FORMS = true; 
+
+  // --- NHẬN DIỆN IN-APP BROWSER ---
+  var ua = navigator.userAgent || "";
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  // Các dấu hiệu phổ biến của webview/in-app
+  var isFacebookApp  = /(FBAN|FBAV|FB_IAB|FB4A|FB4A\/|FBAN\/Messenger)/i.test(ua) || /FB_IAB/i.test(ua);
+  var isMessenger    = /Messenger/i.test(ua) || /FBAN\/Messenger/i.test(ua);
+  var isInstagram    = /Instagram/i.test(ua);
+  var isTikTok       = /TikTok/i.test(ua);
+  var isZalo         = /Zalo|zclient|ZaloTheme/i.test(ua);
+  var isLine         = /Line\/|LINE/i.test(ua);
+  var isSnap         = /Snapchat/i.test(ua);
+  var isTwitterApp   = /Twitter/i.test(ua);
+  var isAndroidWebView = /\bwv\b/i.test(ua) || (/Version\/\d+\.\d+.*Chrome\/\d+/i.test(ua) && /; wv\)/i.test(ua));
+
+  // Gộp: mọi in-app đáng chú ý
+  var isInApp = (
+     isFacebookApp || isMessenger || isInstagram || isTikTok ||
+     isZalo || isLine || isSnap || isTwitterApp || isAndroidWebView
+  );
+
+  // Nếu không phải in-app thì thoát
+  if (!isInApp) return;
+
+  // Tuỳ chọn: vô hiệu hoá form để tránh submit lỗi
+  if (DISABLE_FORMS) {
+    try {
+      Array.prototype.forEach.call(document.querySelectorAll("form"), function(f){
+        f.addEventListener("submit", function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          showGate(); // ép hiện popup nếu user bấm submit
+        }, {capture:true});
+      });
+    } catch(e){}
+  }
+
+  // --- XÂY DỰNG LINK "MỞ BẰNG TRÌNH DUYỆT" ---
+  var currentURL = location.href;
+
+  // Android: intent mở Chrome
+  var androidChromeIntent = "intent://" + location.host + location.pathname +
+      (location.search || "") +
+      "#Intent;scheme=" + location.protocol.replace(':','') + ";package=com.android.chrome;end";
+
+  // iOS: không ép mở Safari bằng scheme được.
+  // Cách thân thiện: hướng dẫn bấm "•••" > "Open in Browser" (Safari) hoặc copy link.
+  // Ngoài ra có thể gợi ý mở trong Chrome nếu người dùng đã cài (không đảm bảo): 
+  var iosChromeScheme = "googlechrome://" + currentURL.replace(/^https?:\/\//, "");
+
+  // --- TẠO POPUP CHẶN ---
+  function showGate(){
+    if (document.getElementById("open-in-browser-gate")) return;
+
+    var s = document.createElement("style");
+    s.textContent = `
+      #open-in-browser-gate{position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:16px}
+      .oib-card{max-width:520px;width:100%;background:#111827;color:#e5e7eb;border:1px solid #374151;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.6);padding:20px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+      .oib-title{font-size:18px;font-weight:700;margin:0 0 8px}
+      .oib-app{font-weight:600;color:#93c5fd}
+      .oib-desc{font-size:14px;line-height:1.5;margin:0 0 14px;color:#cbd5e1}
+      .oib-actions{display:grid;gap:10px;margin-top:12px}
+      .oib-btn{appearance:none;border:1px solid #4b5563;background:#1f2937;color:#e5e7eb;padding:12px 14px;border-radius:12px;font-weight:600;text-align:center;cursor:pointer}
+      .oib-btn:hover{background:#111827}
+      .oib-secondary{background:#0b3d2c;border-color:#14532d}
+      .oib-copy{background:#0f172a;border-color:#1f2937}
+      .oib-hint{font-size:12px;color:#9ca3af;margin-top:8px}
+      .oib-bypass{font-size:12px;text-decoration:underline;color:#9ca3af;text-align:center;margin-top:6px;cursor:pointer}
+    `;
+    document.head.appendChild(s);
+
+    var appName = isMessenger ? "Messenger"
+               : isFacebookApp ? "Facebook"
+               : isInstagram ? "Instagram"
+               : isTikTok ? "TikTok"
+               : isZalo ? "Zalo"
+               : isLine ? "LINE"
+               : "trình duyệt tích hợp";
+
+    var root = document.createElement("div");
+    root.id = "open-in-browser-gate";
+    root.innerHTML = `
+      <div class="oib-card" role="dialog" aria-modal="true">
+        <div class="oib-title">Mở trang bằng trình duyệt của máy</div>
+        <p class="oib-desc">
+          Bạn đang xem trang trong <span class="oib-app">${appName}</span>. 
+          Chế độ xem trước này thường <b>không gửi được biểu mẫu (form)</b> hoặc có lỗi thanh toán/đăng ký.
+          Hãy mở bằng trình duyệt hệ thống để tiếp tục an toàn.
+        </p>
+        <div class="oib-actions">
+          ${isAndroid ? `<button class="oib-btn oib-secondary" id="oib-open-chrome">Mở bằng Chrome</button>` : ``}
+          ${isIOS ? `<button class="oib-btn oib-secondary" id="oib-open-safari">Mở bằng Safari</button>` : ``}
+          <button class="oib-btn oib-copy" id="oib-copy-link">Sao chép liên kết</button>
+        </div>
+        <div class="oib-hint">
+          ${isIOS ? `Mẹo: chạm nút "•••" hoặc biểu tượng chia sẻ, chọn "Open in Browser" / "Mở trong Safari".` 
+                  : `Nếu chưa có Chrome, bạn vẫn có thể mở bằng trình duyệt mặc định của máy.`}
+        </div>
+        ${ALLOW_BYPASS ? `<div class="oib-bypass" id="oib-continue-here">Tiếp tục xem tại đây (có thể lỗi form)</div>` : ``}
+      </div>
+    `;
+    document.body.appendChild(root);
+
+    var btnChrome = document.getElementById("oib-open-chrome");
+    var btnSafari = document.getElementById("oib-open-safari");
+    var btnCopy   = document.getElementById("oib-copy-link");
+    var btnBypass = document.getElementById("oib-continue-here");
+
+    if (btnChrome) {
+      btnChrome.addEventListener("click", function(){
+        // Cách ưu tiên: Android intent mở Chrome với URL hiện tại
+        location.href = androidChromeIntent;
+        // Fallback nhẹ sau 800ms: mở trực tiếp URL (nếu intent không xử lý)
+        setTimeout(function(){ location.href = currentURL; }, 800);
+      });
+    }
+
+    if (btnSafari) {
+      btnSafari.addEventListener("click", function(){
+        // iOS: không thể ép mở Safari. Thử mở Chrome scheme nếu có cài, nếu không user sẽ thấy không phản hồi -> họ dùng hint.
+        // Cách 1: thử chrome scheme
+        window.location.href = iosChromeScheme;
+        // Cách 2 fallback: giữ nguyên – người dùng dùng hướng dẫn "••• > Open in Browser".
+      });
+    }
+
+    btnCopy.addEventListener("click", function(){
+      try {
+        navigator.clipboard.writeText(currentURL).then(function(){
+          btnCopy.textContent = "Đã sao chép ✔";
+          setTimeout(function(){ btnCopy.textContent = "Sao chép liên kết"; }, 1500);
+        }, function(){
+          // Fallback legacy
+          var ta = document.createElement("textarea");
+          ta.value = currentURL; document.body.appendChild(ta);
+          ta.select(); document.execCommand("copy"); document.body.removeChild(ta);
+          btnCopy.textContent = "Đã sao chép ✔";
+          setTimeout(function(){ btnCopy.textContent = "Sao chép liên kết"; }, 1500);
+        });
+      } catch(e){}
+    });
+
+    if (btnBypass) {
+      btnBypass.addEventListener("click", function(){
+        document.getElementById("open-in-browser-gate").remove();
+      });
+    }
+  }
+
+  // Hiển thị popup ngay khi phát hiện in-app
+  showGate();
+})();
+</script>
+
+</body>
+
+</html>
