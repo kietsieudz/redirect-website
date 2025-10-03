@@ -247,6 +247,169 @@
   <div class="toast" id="toast"></div>
 
   <script src="app.js"></script>
+  <script>
+(function () {
+  // --- CẤU HÌNH NHANH ---
+  // Cho phép người dùng "Tiếp tục xem tại đây" (bỏ chặn tạm thời)?
+  var ALLOW_BYPASS = true; 
+  // Tắt hoàn toàn form khi dính in-app (an toàn cho bạn nếu form hay lỗi):
+  var DISABLE_FORMS = true; 
+
+  // --- NHẬN DIỆN IN-APP BROWSER ---
+  var ua = navigator.userAgent || "";
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  // Các dấu hiệu phổ biến của webview/in-app
+  var isFacebookApp  = /(FBAN|FBAV|FB_IAB|FB4A|FB4A\/|FBAN\/Messenger)/i.test(ua) || /FB_IAB/i.test(ua);
+  var isMessenger    = /Messenger/i.test(ua) || /FBAN\/Messenger/i.test(ua);
+  var isInstagram    = /Instagram/i.test(ua);
+  var isTikTok       = /TikTok/i.test(ua);
+  var isZalo         = /Zalo|zclient|ZaloTheme/i.test(ua);
+  var isLine         = /Line\/|LINE/i.test(ua);
+  var isSnap         = /Snapchat/i.test(ua);
+  var isTwitterApp   = /Twitter/i.test(ua);
+  var isAndroidWebView = /\bwv\b/i.test(ua) || (/Version\/\d+\.\d+.*Chrome\/\d+/i.test(ua) && /; wv\)/i.test(ua));
+
+  // Gộp: mọi in-app đáng chú ý
+  var isInApp = (
+     isFacebookApp || isMessenger || isInstagram || isTikTok ||
+     isZalo || isLine || isSnap || isTwitterApp || isAndroidWebView
+  );
+
+  // Nếu không phải in-app thì thoát
+  if (!isInApp) return;
+
+  // Tuỳ chọn: vô hiệu hoá form để tránh submit lỗi
+  if (DISABLE_FORMS) {
+    try {
+      Array.prototype.forEach.call(document.querySelectorAll("form"), function(f){
+        f.addEventListener("submit", function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          showGate(); // ép hiện popup nếu user bấm submit
+        }, {capture:true});
+      });
+    } catch(e){}
+  }
+
+  // --- XÂY DỰNG LINK "MỞ BẰNG TRÌNH DUYỆT" ---
+  var currentURL = location.href;
+
+  // Android: intent mở Chrome
+  var androidChromeIntent = "intent://" + location.host + location.pathname +
+      (location.search || "") +
+      "#Intent;scheme=" + location.protocol.replace(':','') + ";package=com.android.chrome;end";
+
+  // iOS: không ép mở Safari bằng scheme được.
+  // Cách thân thiện: hướng dẫn bấm "•••" > "Open in Browser" (Safari) hoặc copy link.
+  // Ngoài ra có thể gợi ý mở trong Chrome nếu người dùng đã cài (không đảm bảo): 
+  var iosChromeScheme = "googlechrome://" + currentURL.replace(/^https?:\/\//, "");
+
+  // --- TẠO POPUP CHẶN ---
+  function showGate(){
+    if (document.getElementById("open-in-browser-gate")) return;
+
+    var s = document.createElement("style");
+    s.textContent = `
+      #open-in-browser-gate{position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:16px}
+      .oib-card{max-width:520px;width:100%;background:#111827;color:#e5e7eb;border:1px solid #374151;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.6);padding:20px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+      .oib-title{font-size:18px;font-weight:700;margin:0 0 8px}
+      .oib-app{font-weight:600;color:#93c5fd}
+      .oib-desc{font-size:14px;line-height:1.5;margin:0 0 14px;color:#cbd5e1}
+      .oib-actions{display:grid;gap:10px;margin-top:12px}
+      .oib-btn{appearance:none;border:1px solid #4b5563;background:#1f2937;color:#e5e7eb;padding:12px 14px;border-radius:12px;font-weight:600;text-align:center;cursor:pointer}
+      .oib-btn:hover{background:#111827}
+      .oib-secondary{background:#0b3d2c;border-color:#14532d}
+      .oib-copy{background:#0f172a;border-color:#1f2937}
+      .oib-hint{font-size:12px;color:#9ca3af;margin-top:8px}
+      .oib-bypass{font-size:12px;text-decoration:underline;color:#9ca3af;text-align:center;margin-top:6px;cursor:pointer}
+    `;
+    document.head.appendChild(s);
+
+    var appName = isMessenger ? "Messenger"
+               : isFacebookApp ? "Facebook"
+               : isInstagram ? "Instagram"
+               : isTikTok ? "TikTok"
+               : isZalo ? "Zalo"
+               : isLine ? "LINE"
+               : "trình duyệt tích hợp";
+
+    var root = document.createElement("div");
+    root.id = "open-in-browser-gate";
+    root.innerHTML = `
+      <div class="oib-card" role="dialog" aria-modal="true">
+        <div class="oib-title">Mở trang bằng trình duyệt của máy</div>
+        <p class="oib-desc">
+          Bạn đang xem trang trong <span class="oib-app">${appName}</span>. 
+          Chế độ xem trước này thường <b>không gửi được biểu mẫu (form)</b> hoặc có lỗi thanh toán/đăng ký.
+          Hãy mở bằng trình duyệt hệ thống để tiếp tục an toàn.
+        </p>
+        <div class="oib-actions">
+          ${isAndroid ? `<button class="oib-btn oib-secondary" id="oib-open-chrome">Mở bằng Chrome</button>` : ``}
+          ${isIOS ? `<button class="oib-btn oib-secondary" id="oib-open-safari">Mở bằng Safari</button>` : ``}
+          <button class="oib-btn oib-copy" id="oib-copy-link">Sao chép liên kết</button>
+        </div>
+        <div class="oib-hint">
+          ${isIOS ? `Mẹo: chạm nút "•••" hoặc biểu tượng chia sẻ, chọn "Open in Browser" / "Mở trong Safari".` 
+                  : `Nếu chưa có Chrome, bạn vẫn có thể mở bằng trình duyệt mặc định của máy.`}
+        </div>
+        ${ALLOW_BYPASS ? `<div class="oib-bypass" id="oib-continue-here">Tiếp tục xem tại đây (có thể lỗi form)</div>` : ``}
+      </div>
+    `;
+    document.body.appendChild(root);
+
+    var btnChrome = document.getElementById("oib-open-chrome");
+    var btnSafari = document.getElementById("oib-open-safari");
+    var btnCopy   = document.getElementById("oib-copy-link");
+    var btnBypass = document.getElementById("oib-continue-here");
+
+    if (btnChrome) {
+      btnChrome.addEventListener("click", function(){
+        // Cách ưu tiên: Android intent mở Chrome với URL hiện tại
+        location.href = androidChromeIntent;
+        // Fallback nhẹ sau 800ms: mở trực tiếp URL (nếu intent không xử lý)
+        setTimeout(function(){ location.href = currentURL; }, 800);
+      });
+    }
+
+    if (btnSafari) {
+      btnSafari.addEventListener("click", function(){
+        // iOS: không thể ép mở Safari. Thử mở Chrome scheme nếu có cài, nếu không user sẽ thấy không phản hồi -> họ dùng hint.
+        // Cách 1: thử chrome scheme
+        window.location.href = iosChromeScheme;
+        // Cách 2 fallback: giữ nguyên – người dùng dùng hướng dẫn "••• > Open in Browser".
+      });
+    }
+
+    btnCopy.addEventListener("click", function(){
+      try {
+        navigator.clipboard.writeText(currentURL).then(function(){
+          btnCopy.textContent = "Đã sao chép ✔";
+          setTimeout(function(){ btnCopy.textContent = "Sao chép liên kết"; }, 1500);
+        }, function(){
+          // Fallback legacy
+          var ta = document.createElement("textarea");
+          ta.value = currentURL; document.body.appendChild(ta);
+          ta.select(); document.execCommand("copy"); document.body.removeChild(ta);
+          btnCopy.textContent = "Đã sao chép ✔";
+          setTimeout(function(){ btnCopy.textContent = "Sao chép liên kết"; }, 1500);
+        });
+      } catch(e){}
+    });
+
+    if (btnBypass) {
+      btnBypass.addEventListener("click", function(){
+        document.getElementById("open-in-browser-gate").remove();
+      });
+    }
+  }
+
+  // Hiển thị popup ngay khi phát hiện in-app
+  showGate();
+})();
+</script>
+
 </body>
 
 </html>
