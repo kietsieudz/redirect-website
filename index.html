@@ -247,7 +247,72 @@
   <div class="toast" id="toast"></div>
 
   <script src="app.js"></script>
+<script>
+(function(){
+  var ua = navigator.userAgent || "";
+  var isMessenger    = /Messenger|FBAN\/Messenger|FB_IAB/i.test(ua);
+  var isFacebookApp  = /(FBAN|FBAV|FB_IAB|FB4A|com\.facebook\.katana)/i.test(ua);
+  var isInstagram    = /Instagram/i.test(ua);
+  var isTikTok       = /TikTok/i.test(ua);
+  var isZalo         = /Zalo|zclient|ZaloTheme/i.test(ua);
+  var isLine         = /Line\/|LINE/i.test(ua);
+  var isTwitterApp   = /\bTwitter|X\/\d+/i.test(ua);
+  var isSnap         = /Snapchat/i.test(ua);
 
+  var isAndroid = /Android/i.test(ua);
+  var isIOS     = /iPhone|iPad|iPod/i.test(ua);
+
+  var appName = isMessenger ? "Messenger"
+             : isFacebookApp ? "Facebook"
+             : isInstagram ? "Instagram"
+             : isTikTok ? "TikTok"
+             : isZalo ? "Zalo"
+             : isLine ? "LINE"
+             : isTwitterApp ? "X (Twitter)"
+             : isSnap ? "Snapchat"
+             : "";
+
+  if (!appName) return;
+
+  var suggest = isAndroid ? "Chrome" : (isIOS ? "Safari" : "trình duyệt trên máy");
+
+  var bar = document.createElement("div");
+  bar.setAttribute("role", "alert");
+  bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999999;" +
+                      "background:#ffeeba;color:#111;padding:14px;text-align:center;" +
+                      "font:700 18px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;" +
+                      "border-bottom:1px solid #e0c46c";
+  bar.innerHTML =
+    `Bạn đang mở trang chủ trên <b>${appName}</b>. ` +
+    `Hãy copy link và mở bằng <b>${suggest}</b> để có thể đăng ký và tải game.<br>` +
+    `<button id="copyLinkBtn" style="font-weight:700;padding:8px 14px;margin-top:8px;border:1px solid #bfa34e;background:#ffd966;cursor:pointer;border-radius:6px;">Copy link</button>` +
+    `<div id="copyStatus" style="margin-top:6px;font-weight:600;color:#0a7c2f;display:none;">Đã copy link! Hãy mở bằng ${suggest} trên máy của bạn.</div>`;
+
+  document.body.appendChild(bar);
+
+  // đẩy nội dung xuống để không bị che
+  document.body.style.marginTop = (bar.getBoundingClientRect().height) + "px";
+
+  document.getElementById("copyLinkBtn").onclick = function(){
+    var url = "https://thanhdi.top";
+    function done(){
+      document.getElementById("copyStatus").style.display = "block";
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, fallback);
+    } else {
+      fallback();
+    }
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = url; document.body.appendChild(ta);
+      ta.select(); document.execCommand("copy");
+      document.body.removeChild(ta);
+      done();
+    }
+  };
+})();
+</script>
 
 </body>
 
