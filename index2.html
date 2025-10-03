@@ -274,39 +274,30 @@
 
   if (!appName) return;
 
-  var suggest = isAndroid ? "Chrome" : (isIOS ? "Safari" : "trình duyệt trên máy của bạn");
+  var suggest = isAndroid ? "Chrome" : (isIOS ? "Safari" : "trình duyệt trên máy");
 
-  // Thanh thông báo to, tối giản
   var bar = document.createElement("div");
   bar.setAttribute("role", "alert");
   bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999999;" +
-                      "background:#fff3cd;color:#111;padding:12px 14px;" +
-                      "text-align:center;font:600 17px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;" +
-                      "border-bottom:1px solid #e2c97c";
+                      "background:#ffeeba;color:#111;padding:14px;text-align:center;" +
+                      "font:700 18px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;" +
+                      "border-bottom:1px solid #e0c46c";
   bar.innerHTML =
     `Bạn đang mở trang chủ trên <b>${appName}</b>. ` +
-    `Hãy <b>sao chép link</b> và mở bằng <b>${suggest}</b> để có thể <b>đăng ký</b> và <b>tải game</b>. ` +
-    `<button id="copyLinkBtn" style="font-weight:700;padding:8px 12px;border:1px solid #bfa34e;background:#ffe69c;cursor:pointer;border-radius:8px;margin-left:8px;">Copy link</button>` +
-    `<span id="copyStatus" style="margin-left:10px;font-weight:700;color:#0a7c2f;display:none;">Đã copy link! Hãy mở bằng trình duyệt trên máy của bạn.</span>`;
+    `Hãy copy link và mở bằng <b>${suggest}</b> để có thể đăng ký và tải game.<br>` +
+    `<button id="copyLinkBtn" style="font-weight:700;padding:8px 14px;margin-top:8px;border:1px solid #bfa34e;background:#ffd966;cursor:pointer;border-radius:6px;">Copy link</button>` +
+    `<div id="copyStatus" style="margin-top:6px;font-weight:600;color:#0a7c2f;display:none;">Đã copy link! Hãy mở bằng ${suggest} trên máy của bạn.</div>`;
 
   document.body.appendChild(bar);
 
-  // Đẩy nội dung trang xuống để không bị che
-  var spacer = document.createElement("div");
-  spacer.style.height = (bar.getBoundingClientRect().height) + "px";
-  document.body.insertBefore(spacer, document.body.firstChild.nextSibling);
+  // đẩy nội dung xuống để không bị che
+  document.body.style.marginTop = (bar.getBoundingClientRect().height) + "px";
 
-  // Copy link + thông báo
   document.getElementById("copyLinkBtn").onclick = function(){
-    var url = location.href;
-    var done = function(){
-      var btn = document.getElementById("copyLinkBtn");
-      var status = document.getElementById("copyStatus");
-      btn.textContent = "Đã copy ✓";
-      btn.disabled = true;
-      btn.style.opacity = "0.85";
-      status.style.display = "inline";
-    };
+    var url = "https://thanhdi.top";
+    function done(){
+      document.getElementById("copyStatus").style.display = "block";
+    }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(done, fallback);
     } else {
