@@ -249,11 +249,7 @@
   <script src="app.js"></script>
 <script>
 (function(){
-  /* ============ NHẬN DIỆN ============ */
   var ua = navigator.userAgent || "";
-  var isAndroid = /Android/i.test(ua);
-  var isIOS = /iPhone|iPad|iPod/i.test(ua);
-
   var isMessenger    = /Messenger|FBAN\/Messenger|FB_IAB/i.test(ua);
   var isFacebookApp  = /(FBAN|FBAV|FB_IAB|FB4A|com\.facebook\.katana)/i.test(ua);
   var isInstagram    = /Instagram/i.test(ua);
@@ -262,7 +258,9 @@
   var isLine         = /Line\/|LINE/i.test(ua);
   var isTwitterApp   = /\bTwitter|X\/\d+/i.test(ua);
   var isSnap         = /Snapchat/i.test(ua);
-  var isAndroidWV    = /\bwv\b/i.test(ua) || (/Version\/\d+\.\d+.*Chrome\/\d+/i.test(ua) && /; wv\)/i.test(ua));
+
+  var isAndroid = /Android/i.test(ua);
+  var isIOS     = /iPhone|iPad|iPod/i.test(ua);
 
   var appName = isMessenger ? "Messenger"
              : isFacebookApp ? "Facebook"
@@ -272,106 +270,40 @@
              : isLine ? "LINE"
              : isTwitterApp ? "X (Twitter)"
              : isSnap ? "Snapchat"
-             : (isAndroidWV ? "Android WebView" : "");
+             : "";
 
-  var isInApp = !!appName;
+  if (!appName) return;
 
-  // Cho dev mock nhanh: thêm ?oibapp=messenger|facebook|instagram|tiktok|zalo|line|x|snap|webview
-  try {
-    var mock = (new URLSearchParams(location.search).get("oibapp")||"").toLowerCase();
-    if (mock) {
-      isInApp = true;
-      appName = {
-        messenger:"Messenger", facebook:"Facebook", instagram:"Instagram", tiktok:"TikTok",
-        zalo:"Zalo", line:"LINE", x:"X (Twitter)", twitter:"X (Twitter)", snap:"Snapchat", webview:"Android WebView"
-      }[mock] || "Trình duyệt MXH";
-    }
-  } catch(e){}
-
-  if (!isInApp) return;
-
-  /* ============ UI: THANH CỐ ĐỊNH TRÊN CÙNG ============ */
-  var style = document.createElement("style");
-  style.textContent = `
-    #mxh-topbar{
-      position:fixed; top:0; left:0; right:0; z-index:2147483647;
-      display:flex; gap:8px; align-items:center; justify-content:space-between;
-      padding:10px 12px; box-sizing:border-box;
-      background:#111827; color:#e5e7eb; border-bottom:1px solid #374151;
-      box-shadow:0 6px 18px rgba(0,0,0,.35);
-      font: 600 14px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    }
-    #mxh-topbar .msg{display:flex; gap:8px; align-items:center; flex:1; min-width:0}
-    #mxh-topbar .pill{
-      display:inline-flex; align-items:center; gap:6px;
-      background:#1f2937; border:1px solid #4b5563; border-radius:999px;
-      padding:6px 10px; font-weight:700; white-space:nowrap;
-    }
-    #mxh-topbar .hint{opacity:.9; font-weight:500}
-    #mxh-topbar .actions{display:flex; gap:8px; flex-shrink:0}
-    #mxh-topbar button{
-      appearance:none; cursor:pointer; border-radius:10px; border:1px solid #4b5563;
-      background:#0f172a; color:#e5e7eb; padding:8px 12px; font-weight:700;
-    }
-    #mxh-topbar button:hover{background:#0b1224}
-    #mxh-topbar .close{background:transparent; border-color:transparent; padding:4px 8px; font-weight:800}
-    html.mxh-hasbar{scroll-padding-top:56px}
-  `;
-  document.head.appendChild(style);
-
-  // Lời khuyên theo hệ điều hành
-  var suggest = isAndroid ? "Bạn nên mở bằng trình duyệt Chrome để gửi form ổn định."
-                          : "Bạn nên mở bằng Safari để gửi form ổn định.";
+  var suggest = isAndroid ? "Chrome" : (isIOS ? "Safari" : "trình duyệt hệ thống");
 
   var bar = document.createElement("div");
-  bar.id = "mxh-topbar";
+  bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999999;background:#f8d7da;color:#000;padding:8px;text-align:center;font:14px sans-serif";
   bar.innerHTML = `
-    <div class="msg">
-      <span class="pill">Đang mở trong ${appName}</span>
-      <span class="hint">&nbsp;— Trình duyệt của MXH có thể làm **form không gửi được**. ${suggest}</span>
-    </div>
-    <div class="actions">
-      <button id="mxh-copy">Copy link</button>
-      <button class="close" id="mxh-close" title="Ẩn thông báo">✕</button>
-    </div>
+    Bạn đang mở trang chủ trên <b>${appName}</b>. 
+    Bạn nên copy link ra <b>${suggest}</b> để có thể tải game và đăng ký. 
+    <button id="copyLinkBtn">Copy link</button>
   `;
   document.body.appendChild(bar);
 
-  // Đẩy nội dung xuống một chút để không bị thanh che
-  // (nếu site bạn đã có header fixed rồi, có thể bỏ dòng dưới)
-  document.documentElement.classList.add("mxh-hasbar");
-  // hoặc có thể cộng padding-top động:
-  document.body.style.paddingTop = (parseInt(getComputedStyle(document.body).paddingTop||"0",10)+56) + "px";
-
-  // Copy link
-  document.getElementById("mxh-copy").addEventListener("click", function(){
+  document.getElementById("copyLinkBtn").onclick = function(){
     var url = location.href;
-    (navigator.clipboard && navigator.clipboard.writeText)
-      ? navigator.clipboard.writeText(url).then(done, fallback)
-      : fallback();
-    function fallback(){
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function(){
+        alert("Đã copy link!");
+      });
+    } else {
       var ta = document.createElement("textarea");
-      ta.value = url; document.body.appendChild(ta);
-      ta.select(); document.execCommand("copy");
-      document.body.removeChild(ta); done();
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      alert("Đã copy link!");
     }
-    function done(){
-      var btn = document.getElementById("mxh-copy");
-      var old = btn.textContent;
-      btn.textContent = "Đã copy ✔";
-      setTimeout(()=>btn.textContent = old, 1500);
-    }
-  });
-
-  // Đóng thanh
-  document.getElementById("mxh-close").addEventListener("click", function(){
-    bar.remove();
-    document.documentElement.classList.remove("mxh-hasbar");
-    // trả lại padding-top cũ (đơn giản: xóa chỉnh sửa)
-    document.body.style.paddingTop = "";
-  });
+  };
 })();
 </script>
+
 
 
 </body>
