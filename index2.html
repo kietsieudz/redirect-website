@@ -274,37 +274,54 @@
 
   if (!appName) return;
 
-  var suggest = isAndroid ? "Chrome" : (isIOS ? "Safari" : "trình duyệt hệ thống");
+  var suggest = isAndroid ? "Chrome" : (isIOS ? "Safari" : "trình duyệt trên máy của bạn");
 
+  // Thanh thông báo to, tối giản
   var bar = document.createElement("div");
-  bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999999;background:#f8d7da;color:#000;padding:8px;text-align:center;font:14px sans-serif";
-  bar.innerHTML = `
-    Bạn đang mở trang chủ trên <b>${appName}</b>. 
-    Bạn nên copy link ra <b>${suggest}</b> để có thể tải game và đăng ký. 
-    <button id="copyLinkBtn">Copy link</button>
-  `;
+  bar.setAttribute("role", "alert");
+  bar.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:999999;" +
+                      "background:#fff3cd;color:#111;padding:12px 14px;" +
+                      "text-align:center;font:600 17px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;" +
+                      "border-bottom:1px solid #e2c97c";
+  bar.innerHTML =
+    `Bạn đang mở trang chủ trên <b>${appName}</b>. ` +
+    `Hãy <b>sao chép link</b> và mở bằng <b>${suggest}</b> để có thể <b>đăng ký</b> và <b>tải game</b>. ` +
+    `<button id="copyLinkBtn" style="font-weight:700;padding:8px 12px;border:1px solid #bfa34e;background:#ffe69c;cursor:pointer;border-radius:8px;margin-left:8px;">Copy link</button>` +
+    `<span id="copyStatus" style="margin-left:10px;font-weight:700;color:#0a7c2f;display:none;">Đã copy link! Hãy mở bằng trình duyệt trên máy của bạn.</span>`;
+
   document.body.appendChild(bar);
 
+  // Đẩy nội dung trang xuống để không bị che
+  var spacer = document.createElement("div");
+  spacer.style.height = (bar.getBoundingClientRect().height) + "px";
+  document.body.insertBefore(spacer, document.body.firstChild.nextSibling);
+
+  // Copy link + thông báo
   document.getElementById("copyLinkBtn").onclick = function(){
     var url = location.href;
+    var done = function(){
+      var btn = document.getElementById("copyLinkBtn");
+      var status = document.getElementById("copyStatus");
+      btn.textContent = "Đã copy ✓";
+      btn.disabled = true;
+      btn.style.opacity = "0.85";
+      status.style.display = "inline";
+    };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(function(){
-        alert("Đã copy link!");
-      });
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
+      fallback();
+    }
+    function fallback(){
       var ta = document.createElement("textarea");
-      ta.value = url;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
+      ta.value = url; document.body.appendChild(ta);
+      ta.select(); document.execCommand("copy");
       document.body.removeChild(ta);
-      alert("Đã copy link!");
+      done();
     }
   };
 })();
 </script>
-
-
 
 </body>
 
