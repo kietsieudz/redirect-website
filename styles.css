@@ -4,15 +4,132 @@ body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,
 :root{--bg:#0c0d12;--surface:#141621;--surface-2:#1b1e2e;--muted:#99a1b3;--ring:rgba(255,255,255,.08);--radius:16px}
 
 /* Header */
-.appbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:linear-gradient(180deg,rgba(12,13,18,.95),rgba(12,13,18,.65));backdrop-filter:blur(8px);border-bottom:1px solid var(--ring)}
-.brand img{height:28px;display:block}
+.appbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo trái, nút phải */
+  padding: 10px 16px;
+  background: linear-gradient(180deg, rgba(12, 13, 18, 0.95), rgba(12, 13, 18, 0.65));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ring);
+}
+.brand img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+.appbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* khoảng cách giữa các nút */
+}
+.action-btn {
+  background: linear-gradient(135deg, #007aff, #00c6ff);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.25s;
+}
+
+.action-btn:hover {
+  background: linear-gradient(135deg, #005ae0, #0090ff);
+  transform: translateY(-1px);
+}
 .login-btn{padding:8px 12px;border-radius:10px;background:#1971ff;color:#fff;text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,.16)}
 
 /* Layout */
 .page{padding-bottom:84px}
 .hero{display:grid;gap:12px;padding:12px}
-.hero img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius);border:1px solid var(--ring);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.hero img{width:100%;aspect-ratio:16/6;object-fit:cover;border-radius:var(--radius);border:1px solid var(--ring);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.dlzone-wrap {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 16px;
+  font-family: sans-serif;
+  color: var(--dlzone-text);
+}
 
+.dlzone-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.dlzone-block {
+  border: 2px solid var(--dlzone-border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+}
+
+.dlzone-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.dlzone-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  border: 2px solid var(--dlzone-border);
+}
+.dlzone-badge--apk {
+  background: linear-gradient(135deg, #22c55e, #10b981);
+}
+.dlzone-badge--ios {
+  background: linear-gradient(135deg, #2f6dfb, #2fc3ff);
+}
+.dlzone-badge--pc {
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+}
+.dlzone-badge--java {
+  background: linear-gradient(135deg, #f59e0b, #fb923c);
+}
+
+.dlzone-desc {
+  margin: 0 0 14px;
+  font-size: 15px;
+  color: var(--dlzone-sub);
+}
+
+.dlzone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* === Nút trắng có viền trắng rõ === */
+.dlzone-pill {
+  display: inline-block;
+  color: var(--dlzone-text);
+  border: 2px solid #fff;         /* viền trắng rõ */
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.25s;
+  background-color: transparent;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4); /* thêm viền sáng nhẹ */
+}
+
+.dlzone-pill:hover {
+  background-color: #fff;
+  color: #0b1020;
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
 /* Quick actions */
 .hero__quick{
   display: grid;
@@ -58,6 +175,108 @@ body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,
   /* sửa dòng này */
   padding:6px 6px calc(10px + env(safe-area-inset-bottom));
   z-index:50
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  font-family: sans-serif;
+  text-align: center;
+  margin: 0 auto;              /* căn giữa */
+  left: 50%;
+  transform: translateX(-50%); /* đẩy về giữa */
+}
+
+.dropbtn {
+  background: linear-gradient(135deg, #007aff, #00c6ff);
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.dropbtn:hover {
+  background: linear-gradient(135deg, #005ae0, #00a0e0);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(20, 25, 40, 0.95);
+  min-width: 230px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.dropdown-content a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 10px 14px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.dropdown-content a:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.dropdown-content img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.register-section {
+  text-align: center;
+  padding: 40px 0;
+  font-family: sans-serif;
+}
+
+.register-header h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.register-viewall {
+  color: #00bfff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.register-list {
+  display: flex;
+  flex-direction: column;   /* xếp nút theo chiều dọc */
+  align-items: center;      /* căn giữa ngang */
+  gap: 16px;                /* khoảng cách giữa các nút */
+  margin-top: 10px;
+}
+
+.register-btn {
+  display: block;
+  width: 280px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #007aff, #00c6ff);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.register-btn:hover {
+  background: linear-gradient(135deg, #005ae0, #0090ff);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .tabbar__item{display:grid;place-items:center;gap:6px;text-decoration:none;color:#cbd5e1;padding:8px 0;border-radius:12px}
