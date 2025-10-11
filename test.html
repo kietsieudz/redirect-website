@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Ngọc Rồng Mobile - TDStudio</title>
+        <meta name="keywords"
+            content="ngoc rong, ngọc rồng, dragon ball style, TDStudio, server ngọc rồng, sự kiện ngọc rồng, giftcode ngọc rồng" />
+        <meta name="description"
+            content="Trang chủ TDStudio — Hệ sinh thái dự án xoay quanh Ngọc Rồng: tin tức, tải game, máy chủ, sự kiện và cộng đồng." />
+        <meta name="theme-color" content="#0f172a" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+            rel="stylesheet" />
+        <style>
+    :root{--bg:#f8fafc;--card:#ffffff;--muted:#475569;--text:#0f172a;--brand:#f59e0b;--border:rgba(2,6,23,.08)}
+    *{box-sizing:border-box} html,body{margin:0;height:100%} body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:linear-gradient(180deg,#fff 0%,#f8fafc 60%,#f1f5f9 100%);color:var(--text)}
+    a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+    .container{width:min(1100px,92%);margin-inline:auto}
+    .row{display:flex;gap:24px;flex-wrap:wrap}.col{flex:1 1 0}
+    .appbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+    .brand img{width:40px;height:40px;border-radius:12px}.brand span{font-size:18px}
+    .nav-links{display:flex;gap:8px;align-items:center}.nav-links a{padding:8px 12px;border-radius:10px;color:#334155}
+    .nav-links a:hover,.nav-links a.active{color:#0f172a;background:rgba(2,6,23,.04)}
+    .hamburger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:#fff;color:#0f172a}
+    .mode{display:flex;align-items:center;gap:8px}.switch{inline-size:54px;block-size:30px;border-radius:999px;border:1px solid var(--border);position:relative;background:#e2e8f0;cursor:pointer}
+    .switch i{position:absolute;inset:3px;inline-size:24px;block-size:24px;border-radius:999px;background:var(--brand);transition:transform .25s ease}
+    .switch.on i{transform:translateX(24px);background:#0ea5e9}
+    .hero{position:relative}.hero-inner{display:grid;grid-template-columns:1.15fr 1fr;gap:28px;align-items:center;padding:48px 0 20px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--border);border-radius:999px;color:#475569;font-size:12px;background:#fff}
+    .h1{font-size:40px;line-height:1.15;margin:10px 0 12px}.h1 span{display:block}
+    .lead{color:#475569;font-size:16px;max-width:64ch}.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border-radius:12px;border:1px solid var(--border);background:#fff;color:#0f172a;font-weight:600}
+    .btn .ico{width:18px;height:18px}.btn.primary{background:linear-gradient(90deg,#ffedd5,#fde68a);border-color:#f59e0b;color:#0b0b0b}
+    .btn.ghost:hover{background:rgba(2,6,23,.04)}
+    .moon{position:absolute;top:32px;right:min(6vw,48px);width:68px;height:68px;border-radius:999px;background:radial-gradient(circle at 30% 35%,#fff 0%,#ffe29a 45%,#f59e0b 65%,transparent 70%);filter:drop-shadow(0 0 10px #fde68a);opacity:.75}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.stat{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff}
+    .stat .num{font-size:26px;font-weight:800}.stat .lbl{color:#64748b;font-size:13px}
+    .section{padding:40px 0}.section h2{font-size:26px;margin:0 0 10px}.muted{color:#64748b}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{border:1px solid var(--border);border-radius:14px;background:var(--card);padding:16px}.card h3{margin:0 0 6px;font-size:18px}
+    .badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#fff7ed;color:#b45309;border:1px solid #fed7aa;font-size:12px}
+    .download{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .platform{display:flex;align-items:center;gap:12px;border:1px dashed var(--border);border-radius:14px;padding:14px;background:#fff;cursor:pointer}
+    .platform-list{display:none;flex-direction:column;gap:6px;background:#f8fafc;border-left:3px solid var(--brand);margin:6px 0 14px 42px;padding:10px 14px;border-radius:6px;animation:fadeIn .3s ease}
+    .platform-list a{font-size:14px;color:#0f172a;text-decoration:none;padding:4px 0}.platform-list a:hover{text-decoration:underline}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.shot{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#fff}
+    .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.quote{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px}.quote p{margin:0 0 8px}
+    #fanpage .fb-wrapper{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;padding:8px}
+    .tabs{display:flex;gap:8px;margin:8px 0 12px}.tab{padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;cursor:pointer}
+    .tab.active{background:#fef3c7;border-color:#f59e0b}
+    .embed{display:none}.embed.active{display:block}
+    footer{border-top:1px solid var(--border);background:#fff;padding:22px 0;margin-top:28px}
+    .footgrid{display:grid;grid-template-columns:2fr 1fr 1.2fr;gap:16px}
+    .age{display:flex;gap:8px;align-items:center;margin-top:8px;color:#64748b;font-size:12px}
+    @media (max-width: 992px){.hero-inner{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(3,1fr)}.quotes{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr}.download{grid-template-columns:1fr}}
+    @media (max-width: 640px){.nav-links{display:none}.hamburger{display:inline-grid;place-items:center}.h1{font-size:30px}.gallery{grid-template-columns:repeat(2,1fr)}.quotes{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr}.footgrid{grid-template-columns:1fr}}
+  </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="appbar">
+            <div class="container nav">
+                <a class="brand" href="#"><img
+                        src="https://nroclan.com/static/sonic/img/ok.png"
+                        alt="TDStudio"><span>TDStudio</span></a>
+                <nav class="nav-links">
+                    <a class="active" href="#home">Trang chủ</a>
+                    <a href="#download">Tải game</a>
+                    <a href="#fanpage">Fanpage</a>
+                    <a href="#gallery">Ảnh</a>
+                    <a href="#community">Cộng đồng</a>
+                </nav>
+                <div class="mode">
+                    <div id="modeSwitch" class="switch" role="button"
+                        aria-label="Chuyển chế độ"><i></i></div>
+                    <button id="menuBtn" class="hamburger"
+                        aria-label="Mở menu">≡</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <div class="container hero-inner">
+                <div>
+                    <span class="eyebrow">Ngọc Rồng Mobile bởi TDStudio</span>
+                    <h1 class="h1">Tìm lại ký ức – <span
+                            style="color:var(--brand)">Ngọc Rồng
+                            Mobile</span></h1>
+                    <p class="lead">TDStudio ra đời từ tình yêu với <strong>Ngọc
+                            Rồng</strong>, mong muốn giữ lại ký ức tuổi thơ cho
+                        người chơi Việt. Từ đó, chúng tôi xây dựng một thế giới
+                        quen thuộc nhưng luôn mới mẻ, nơi mọi người cùng phiêu
+                        lưu, chiến đấu và gắn bó như một đại gia đình.</p>
+                    <div class="cta">
+                        <a class="btn primary" href="#download">Tải ngay</a>
+                        <a class="btn ghost" href="#fanpage"><svg class="ico"
+                                viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg"><path
+                                    d="M12 5v14m-7-7h14" stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round" /></svg>Theo dõi
+                            fanpage</a>
+                    </div>
+                    <div class="stats">
+                        <div class="stat"><div class="num">5+</div><div
+                                class="lbl">Máy chủ hoạt động</div></div>
+                        <div class="stat"><div class="num">7.2k</div><div
+                                class="lbl">Người chơi online</div></div>
+                        <div class="stat"><div class="num">Tuần</div><div
+                                class="lbl">Cập nhật định kì mỗi
+                                tuần</div></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="moon" aria-hidden="true"></div>
+                    <img
+                        src="https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/557593270_644076672117084_8446785466073503040_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rGPa8yYnuFsQ7kNvwE9d7jB&_nc_oc=Adn-pMOhSxydkqUb6VnCf802dVXcOzgeQv9pKXSq-W5UIzj0TB6iEJuI4T2nVYWI-moXghKsVZUAX3OpTZQgYMm-&_nc_zt=23&_nc_ht=scontent.fdad3-6.fna&_nc_gid=EqfMcsx2IRvGxRfGF_GZww&oh=00_Afc7_pylBVejcO_MIyPmrtDsiEFNVHY7KOLCaDHk1Hm5Sg&oe=68EFA23B"
+                        alt="Screenshot Ngọc Rồng"
+                        style="border-radius:18px;border:1px solid var(--border);box-shadow:0 10px 40px rgba(0,0,0,.35)">
+                </div>
+            </div>
+        </section>
+
+        <!-- Download -->
+        <section id="download" class="section">
+            <div class="container">
+                <h2>Tải game</h2>
+                <p class="muted">Chọn nền tảng bạn dùng. Bấm vào để xem các
+                    phiên bản tương ứng.</p>
+
+                <div class="download" style="margin-top:14px">
+                    <!-- JAVA -->
+                    <div class="platform collapsible"
+                        onclick="togglePlatform('javaList')">
+                        <img
+                            src="https://img.icons8.com/?size=1200&id=GPfHz0SM85FX&format=jpg"
+                            width="28" height="28" alt="Java">
+                        <div><strong>Java (JAR/JAD)</strong><div class="muted"
+                                style="font-size:12px">Dành cho điện thoại Java
+                                cũ hoặc Giả lập</div></div>
+                    </div>
+                    <div id="javaList" class="platform-list">
+                        <a
+                            href="https://drive.google.com/file/d/1eiQLBTeXL8GX_ETC39v2hzZWjfPNcX2i/view?usp=sharing">📦
+                            Bản 1.0.3 (Game - dùng để treo game)</a>
+                        <a
+                            href="https://mega.nz/file/Rz8yjYrK#UCSjSw1bYDkdSYGDnupGO6OQraxSiyQB-XktyFpQ8Og">📦
+                            Bản 1.0.2 (Game - dùng để treo game)</a>
+                        <a
+                            href="https://mega.nz/file/Rz8yjYrK#UCSjSw1bYDkdSYGDnupGO6OQraxSiyQB-XktyFpQ8Og">📦
+                            Bản 1.0.1 (Game - dùng để treo game)</a>
+                        <a
+                            href="https://mega.nz/file/Rz8yjYrK#UCSjSw1bYDkdSYGDnupGO6OQraxSiyQB-XktyFpQ8Og">📦
+                            AngelChip Emulator (Phần mềm hỗ trợ)</a>
+                        <a
+                            href="https://download.oracle.com/java/17/archive/jdk-17.0.12_windows-x64_bin.exe">📦
+                            JDK-17 (Phần mềm hỗ trợ)</a>
+                    </div>
+
+                    <!-- APK -->
+                    <div class="platform collapsible"
+                        onclick="togglePlatform('apkList')">
+                        <img
+                            src="https://img.icons8.com/?size=48&id=17836&format=png"
+                            width="28" height="28" alt="Android">
+                        <div><strong>Android (APK)</strong><div class="muted"
+                                style="font-size:12px">Android 6.0+ (Samsung,
+                                Oppo, Redmi, Nokia,..)</div></div>
+                    </div>
+                    <div id="apkList" class="platform-list">
+                        <a
+                            href="https://drive.google.com/file/d/1yJ7cbje0S9Sc253vOWKW_mgTR-bwmgu4/view?usp=sharing">📱
+                            Bản 1.0.3 (ổn định - update liên tục)</a>
+                        <a
+                            href="https://drive.google.com/file/d/1RAw6UjuEyxPiH3ab2QL0Aa0iBwC4a0aB/view?usp=drive_link">📱
+                            Bản 1.0.2 (ổn định - update liên tục)</a>
+                        <a
+                            href="https://drive.google.com/file/d/10LaOHI3jijJqsDqBvmZRcciscI8xiFt4/view?usp=sharing">📱
+                            Bản 1.0.1 (ổn định - update liên tục)</a>
+                    </div>
+
+                    <!-- iOS -->
+                    <div class="platform collapsible"
+                        onclick="togglePlatform('iosList')">
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/fr/archive/b/bc/20210310082855%21TestFlight-icon.png"
+                            width="28" height="28" alt="iOS">
+                        <div><strong>iOS (TestFlight)</strong><div class="muted"
+                                style="font-size:12px">Hỗ trợ iPhone, iPad và
+                                Mac</div></div>
+                    </div>
+                    <div id="iosList" class="platform-list">
+                        <a href="https://testflight.apple.com/join/XVBYkfyJ">🍎
+                            Bản 1.0.3 (ổn định - cập nhật liên tục)</a>
+                        <a href="https://testflight.apple.com/join/fd1f2StG">🍎
+                            Bản 1.0.2 (ổn định - cập nhật liên tục)</a>
+                        <a href="https://testflight.apple.com/join/yaH2H6Q7">🍎
+                            Bản 1.0.1 (ổn định - cập nhật liên tục)</a>
+                        <a
+                            href="https://drive.google.com/file/d/1-h1RamNdIysgzNka0IeYZ0wt48NX92G8/view?usp=sharing">🍎
+                            Bản 1.0.3 (ổn định - cập nhật liên tục)</a>
+                        <a
+                            href="https://youtube.com/shorts/1SEY7kO9M_w?si=8Ff6aSIjGMiEzC2J">🍎
+                            Hướng dẫn cài đặt testflight</a>
+                    </div>
+
+                    <!-- PC -->
+                    <div class="platform collapsible"
+                        onclick="togglePlatform('pcList')">
+                        <img
+                            src="https://images.vexels.com/media/users/3/157318/isolated/preview/2782b0b66efa5815b12c9c637322aff3-desktop-computer-icon-computer.png"
+                            width="28" height="28" alt="Windows">
+                        <div><strong>Windows (PC)</strong><div class="muted"
+                                style="font-size:12px">Giải nén & chạy
+                                launcher</div></div>
+                    </div>
+                    <div id="pcList" class="platform-list">
+                        <a
+                            href="https://drive.google.com/file/d/1bRH5098NG3UA4B6jC-Dbsy71jZdJZxx2/view?usp=sharing">💻
+                            Bản 1.0.3 (ổn định - mới)</a>
+                        <a
+                            href="https://drive.google.com/file/d/1LhyqQxNGB7nBwPLKWRPuddCZAq9KU0QL/view?usp=drive_link">💻
+                            Bản 1.0.2 (ổn định - cũ)</a>
+                        <a
+                            href="https://mega.nz/file/03FSxbgJ#odT9-m9hfaiGDvyvCoLemZYgMT2uonugcjFjQkZai7M">💻
+                            Bản 1.0.1 (ổn định - cũ)</a>
+                        <a
+                            href="https://www.win-rar.com/fileadmin/winrar-versions/winrar/winrar-x64-701.exe">💻
+                            Bản 2.3.1 (Có thể xảy ra lỗi)</a>
+                        <a
+                            href="https://tdmgame.my.canva.site/downloadpcguide">💻
+                            Hướng dẫn cài đặt</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fanpage -->
+        <section id="fanpage" class="section" style="padding-top:0">
+            <div class="container">
+                <h2>Bài viết từ Fanpage</h2>
+                <p class="muted">Tin nóng, sự kiện và thông báo mới nhất.</p>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-target="#embed-demo">Demo
+                        (Facebook App)</button>
+                    <button class="tab" data-target="#embed-tdstudio">TDStudio
+                        Fanpage</button>
+                </div>
+
+                <div class="fb-wrapper">
+                    <!-- EMBED DEMO (luôn công khai để bạn thấy ngay) -->
+                    <div id="embed-demo" class="embed active">
+                        <div class="fb-page"
+                            data-href="https://www.facebook.com/ngaidinro"
+                            data-tabs="timeline"
+                            data-width="1000"
+                            data-height="680"
+                            data-small-header="true"
+                            data-adapt-container-width="true"
+                            data-hide-cover="false"
+                            data-show-facepile="false">
+                        </div>
+                    </div>
+                </div>
+                <p class="muted" style="margin-top:8px;font-size:12px">Nếu tab
+                    Demo hiển thị còn tab TDStudio không: fanpage của bạn đang
+                    bị hạn chế (quốc gia/độ tuổi) hoặc không phải Page.</p>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" class="section">
+            <div class="container">
+                <h2>Ảnh màn hình</h2>
+                <p class="muted">Một vài khoảnh khắc tiêu biểu trong vũ trụ
+                    TDStudio.</p>
+                <div class="gallery" style="margin-top:12px">
+                    <div class="shot"><img
+                            src="https://nroclan.com/static/sonic/img/screenshot2.jpg"
+                            alt="shot 1"></div>
+                    <div class="shot"><img
+                            src="https://nroclan.com/static/sonic/img/screenshot3.jpg"
+                            alt="shot 2"></div>
+                    <div class="shot"><img
+                            src="https://nroclan.com/static/sonic/img/screenshot4.jpg"
+                            alt="shot 3"></div>
+                    <div class="shot"><img
+                            src="https://nroclan.com/static/sonic/img/screenshot5.jpg"
+                            alt="shot 4"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community -->
+        <section id="community" class="section" style="padding-top:0">
+            <div class="container">
+                <h2>Cộng đồng</h2>
+                <p class="muted">Nhận giftcode, cập nhật và hướng dẫn nâng cấp
+                    sức mạnh.</p>
+                <div class="row" style="margin-top:10px">
+                    <div class="col card">
+                        <h3>Fanpage Facebook</h3>
+                        <p class="muted">Tin nóng, event, thông báo bảo trì.</p>
+                        <a class="btn ghost"
+                            href="https://facebook.com/ngocrongnthevmax"
+                            target="_blank" rel="noopener">Mở Facebook</a>
+                    </div>
+                    <div class="col card">
+                        <h3>Nhóm Zalo</h3>
+                        <p class="muted">Chia sẻ kinh nghiệm, kết bạn săn
+                            boss.</p>
+                        <a class="btn ghost" href="#" target="_blank"
+                            rel="noopener">Tham gia nhóm</a>
+                    </div>
+                    <div class="col card">
+                        <h3>Wiki TDStudio</h3>
+                        <p class="muted">Bản đồ, chỉ số trang bị và mẹo
+                            build.</p>
+                        <a class="btn ghost" href="#" target="_blank"
+                            rel="noopener">Mở Wiki</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container footgrid">
+                <div>
+                    <div class="brand"><img
+                            src="https://nroclan.com/static/sonic/img/ok.png"
+                            alt="TDStudio"><span>TDStudio</span></div>
+                    <p class="muted" style="margin-top:8px">Dự án cộng đồng xoay
+                        quanh Ngọc Rồng — phát triển bởi TDStudio.</p>
+                    <div class="age"><img
+                            src="https://ngocrongonline.com/18-1.png"
+                            height="14" alt="18+"><span>Dành cho người chơi từ
+                            18 tuổi. Chơi quá 180 phút / ngày có thể ảnh hưởng
+                            sức khỏe.</span></div>
+                </div>
+                <div>
+                    <h3 style="font-size:14px;margin:0 0 8px">Liên kết</h3>
+                    <ul
+                        style="list-style:none;padding:0;margin:0;display:grid;gap:6px">
+                        <li><a class="muted" href="#download">Tải game</a></li>
+                        <li><a class="muted" href="#fanpage">Fanpage</a></li>
+                        <li><a class="muted" href="#community">Cộng
+                                đồng</a></li>
+                        <li><a class="muted" href="#">Điều khoản & Quyền riêng
+                                tư</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-size:14px;margin:0 0 8px">Liên hệ</h3>
+                    <p class="muted" style="margin:0 0 6px">Email: <a
+                            href="mailto:support@thanhdi.top">support@thanhdi.top</a></p>
+                    <p class="muted" style="margin:0">© <span id="year"></span>
+                        TDStudio. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Facebook SDK -->
+        <div id="fb-root"></div>
+        <script>
+    window.fbAsyncInit = function() {
+      FB.init({ xfbml: true, version: 'v19.0' });
+      // Parse cả 2 khối embed khi SDK sẵn sàng
+      const fanpageSection = document.getElementById('fanpage');
+      if (fanpageSection && FB && FB.XFBML) FB.XFBML.parse(fanpageSection);
+    };
+  </script>
+        <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0"></script>
+
+        <!-- App JS -->
+        <script>
+    // Mode toggle
+    const modeKey='mode';
+    const switchEl=document.getElementById('modeSwitch');
+    const applyMode=()=>{const m=localStorage.getItem(modeKey)||'light';if(m==='dark'){document.documentElement.style.colorScheme='dark';switchEl.classList.add('on');}else{document.documentElement.style.colorScheme='light';switchEl.classList.remove('on');}};
+    switchEl.addEventListener('click',()=>{const m=localStorage.getItem(modeKey)==='dark'?'light':'dark';localStorage.setItem(modeKey,m);applyMode();});
+    applyMode();
+
+    // Mobile menu
+    document.getElementById('menuBtn').addEventListener('click',()=>{const nav=document.querySelector('.nav-links');nav.style.display=nav.style.display==='flex'?'none':'flex';});
+
+    // Accordion
+    function togglePlatform(id){const el=document.getElementById(id);const open=el.style.display==='flex';document.querySelectorAll('.platform-list').forEach(e=>e.style.display='none');el.style.display=open?'none':'flex';}
+
+    // Year
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // Tabs: đổi giữa Demo & TDStudio
+    document.querySelectorAll('.tab').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.embed').forEach(e=>e.classList.remove('active'));
+        btn.classList.add('active');
+        const target = document.querySelector(btn.dataset.target);
+        if(target){ target.classList.add('active'); if(window.FB && FB.XFBML) FB.XFBML.parse(target); }
+      });
+    });
+
+    // Parse lại nếu SDK tới trễ
+    document.addEventListener('DOMContentLoaded',()=>{const sect=document.getElementById('fanpage'); if(window.FB && FB.XFBML) FB.XFBML.parse(sect); else setTimeout(()=>{if(window.FB && FB.XFBML) FB.XFBML.parse(sect);}, 1000);});
+  </script>
+    </body>
+</html>
