@@ -170,32 +170,48 @@ function initGiftcode() {
 /* =========================
    5) Posts render (mock)
    ========================= */
-const POSTS_PAGE_SIZE = 3;
+const POSTS_PAGE_SIZE = 5;
 const allPosts = [
+  {
+    title: "Sự Kiện KOL - Nhận Dialga",
+    href: "https://www.facebook.com/share/p/17bfrTt46h/",
+    img: "assets/event1.jpg",
+    cat: "Event",
+    date: "14/10/2025",
+    excerpt: "Cùng like và bình luận dưới bài viết để nhận ngay thưởng Dialga!",
+  },
   {
     title: "Sự kiện Trung Thu 2025",
     href: "https://www.facebook.com/share/p/1Eav67sPTJ/",
-    img: "assets/event3.png",
+    img: "assets/event3.jpg",
     cat: "Event",
-    date: "06/10/2025",
+    date: "14/10/2025",
     excerpt: "Cùng like và bình luận dưới bài viết để nhận ngay Giftcode Trung Thu cực chất!",
   },
   {
-    title: "Review Giftcode Server",
-    href: "https://www.facebook.com/share/r/19f96Y3g7z/",
-    img: "assets/event2.png",
-    cat: "Event",
-    date: "06/10/2025",
-    excerpt: "Cùng like và bình luận dưới bài viết để nhận ngay Giftcode PoketBall Pokemon!",
-  },
-  {
-    title: " New Update: Contact & Support Page",
-    href: "https://www.facebook.com/share/p/1BRRWAEfev/",
-    img: "assets/event1.png",
+    title: " Nhập Vai KOL - Thực Thụ",
+    href: "https://www.facebook.com/share/p/1CbjcpphGz/",
+    img: "assets/event2.jpg",
     cat: "Update",
-    date: "06/10/2025",
+    date: "14/10/2025",
     excerpt: "We’re excited to announce that our Contact & Support page has just been updated!",
   },
+  {
+    title: "Meme - Thách thực dịch chữ",
+    href: "https://www.facebook.com/share/p/19RyxG65jn/",
+    img: "assets/event4.jpg",
+    cat: "Update",
+    date: "14/10/2025",
+    excerpt: "We’re excited to announce that our Contact & Support page has just been updated!",
+  },
+  {
+    title: "Meme - Chủ quan không kiểm tra",
+    href: "https://www.facebook.com/share/p/1BKwnKiCjG/",
+    img: "assets/event5.jpg",
+    cat: "Update",
+    date: "14/10/2025",
+    excerpt: "We’re excited to announce that our Contact & Support page has just been updated!",
+  }
 ];
 let postsRendered = 0;
 
