@@ -536,27 +536,3 @@ async function initNumberedGallery(){
 }
 document.addEventListener('DOMContentLoaded', initNumberedGallery);
 
-(function(){
-  const fab = document.getElementById('ndxMsgrFab');
-  const hint = document.getElementById('msgrHint');
-  const closeBtn = hint.querySelector('.ndx-hint-close');
-  const KEY = 'ndx_msgr_hint_closed';
-
-  function showHint(){
-    if (sessionStorage.getItem(KEY) === '1') return;
-    hint.classList.add('show');
-    hint.setAttribute('aria-hidden', 'false');
-  }
-  function hideHint(){
-    hint.classList.remove('show');
-    hint.setAttribute('aria-hidden', 'true');
-    // sessionStorage.setItem(KEY, '1');
-  }
-
-  // Tự bật sau 3 giây
-  window.addEventListener('load', () => setTimeout(showHint, 3000));
-
-  // Ẩn khi người dùng bấm nút đóng hoặc bấm nút chat
-  closeBtn.addEventListener('click', hideHint);
-  fab.addEventListener('click', hideHint);
-})();

@@ -48,7 +48,7 @@
 
     <div id="msgrHint" class="ndx-hint" role="status" aria-live="polite"
       aria-hidden="true">
-      Bạn cần hỗ trợ gì không ạ?
+      Chat "xin code" để nhận bộ giftcode xịn nhá!
       <button class="ndx-hint-close" type="button"
         aria-label="Đóng gợi ý">&times;</button>
     </div>
@@ -286,6 +286,54 @@
     <script src="app.js"></script>
 
     <!-- Cảnh báo in-app browser (Facebook/IG/Zalo...) -->
+    <script>
+(function(){
+  const KEY = 'ndx_msgr_hint_closed_v2'; // đổi key mới, tránh bị lưu từ test cũ
+
+  function ready(fn){
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn, { once: true });
+    } else { fn(); }
+  }
+
+  ready(function(){
+    const fab  = document.getElementById('ndxMsgrFab');
+    const hint = document.getElementById('msgrHint');
+
+    if (!fab || !hint) {
+      console.warn('[msgr-hint] Không tìm thấy', { fab: !!fab, hint: !!hint });
+      return;
+    }
+
+    const closeBtn = hint.querySelector('.ndx-hint-close');
+
+    function showHint(){
+      if (sessionStorage.getItem(KEY) === '1') {
+        // console.debug('[msgr-hint] đã đóng trong phiên này');
+        return;
+      }
+      hint.classList.add('show');
+      hint.setAttribute('aria-hidden', 'false');
+      // console.debug('[msgr-hint] SHOW');
+    }
+
+    function hideHint(){
+      hint.classList.remove('show');
+      hint.setAttribute('aria-hidden', 'true');
+      sessionStorage.setItem(KEY, '1');
+      // console.debug('[msgr-hint] HIDE');
+    }
+
+    // Tự bật sau 1500ms (giảm độ chờ để test)
+    setTimeout(showHint, 1500);
+
+    // Gắn sự kiện đóng
+    if (closeBtn) closeBtn.addEventListener('click', hideHint);
+    fab.addEventListener('click', hideHint);
+  });
+})();
+</script>
+
     <script>
   (function(){
     var ua = navigator.userAgent || "";
