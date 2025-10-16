@@ -383,51 +383,49 @@ body[data-page="privacy"] .footer{ margin-top:22px; padding-top:16px; border-top
 @media (min-width:1024px){ .page{ max-width:960px; } }
 
 /* --- Messenger Hint Bubble (auto show) --- */
-.ndx-hint {
-  position: fixed;
-  right: calc(16px + 56px + 12px); /* canh theo FAB */
-  bottom: calc(96px + env(safe-area-inset-bottom) + 6px);
+/* === Hint bubble: dùng cùng gradient với FAB === */
+.ndx-hint{
+  position:fixed;
+  /* vị trí do JS đặt .style.right/.style.bottom → không set ở CSS */
   max-width: 240px;
-  background: #111827;
-  color: #fff;
-  font: 14px/1.45 ui-sans-serif, system-ui, Segoe UI, Roboto, Inter;
   padding: 10px 12px;
   border-radius: 12px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
-  opacity: 0;
-  transform: translateY(6px);
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  z-index: 9999;
+  /* CÙNG GRADIENT VỚI .ndx-msgr-fab */
+  background: linear-gradient(135deg,#0084ff,#00c6ff);
+  color:#fff;
+  font: 600 14px/1.45 ui-sans-serif,system-ui,Segoe UI,Roboto,Inter;
+  box-shadow: 0 10px 24px rgba(0,0,0,.30), inset 0 0 0 1px rgba(255,255,255,.12);
+  text-shadow: 0 1px 0 rgba(0,0,0,.18);
+  opacity:0; transform:translateY(6px);
+  pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+  z-index:2147483647;
 }
-.ndx-hint.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-.ndx-hint::after {
-  content: "";
-  position: absolute;
-  right: -6px;
-  bottom: 14px;
-  width: 0; height: 0;
-  border-left: 6px solid #111827;
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-}
-.ndx-hint-close {
-  margin-left: 8px;
-  border: 0; background: transparent;
-  color: #9ca3af;
-  cursor: pointer; font-size: 16px; line-height: 1;
-}
-.ndx-hint-close:hover { color: #fff; }
+.ndx-hint.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
 
-@media (max-width: 420px) {
-  .ndx-hint {
-    right: calc(12px + 52px + 10px);
-    bottom: calc(96px + env(safe-area-inset-bottom) + 4px);
-    max-width: 200px;
-    font-size: 13px;
-  }
+/* Mũi tên cùng gradient (dùng background:inherit + rotate) */
+.ndx-hint::after{
+  content:"";
+  position:absolute;
+  right:-8px;              /* chĩa về phía nút */
+  bottom:14px;
+  width:14px; height:14px; /* hình thoi làm mũi tên */
+  background:inherit;      /* lấy đúng gradient của khối chính */
+  transform: rotate(45deg);
+  border-radius: 2px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,.18);
+}
+
+/* Nút đóng trên nền sáng */
+.ndx-hint-close{
+  margin-left:8px;
+  border:0; background:transparent;
+  color:#eef6ff; opacity:.85;
+  cursor:pointer; font-size:16px; line-height:1;
+}
+.ndx-hint-close:hover{ opacity:1; }
+
+/* Mobile chỉ thu font/chiều rộng — không đổi màu */
+@media (max-width:420px){
+  .ndx-hint{ max-width:200px; font-size:13px; }
 }

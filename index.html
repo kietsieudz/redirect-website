@@ -288,49 +288,50 @@
     <!-- Cảnh báo in-app browser (Facebook/IG/Zalo...) -->
     <script>
 (function(){
-  const KEY = 'ndx_msgr_hint_closed_v2'; // đổi key mới, tránh bị lưu từ test cũ
+  const GAP_X = 12;  // cách ngang giữa FAB và hint
+  const GAP_Y = 6;   // cách dọc giữa FAB và hint
+  const fab  = document.getElementById('ndxMsgrFab');
+  const hint = document.getElementById('msgrHint');
+  if (!fab || !hint) return;
 
-  function ready(fn){
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fn, { once: true });
-    } else { fn(); }
+  function placeHint(){
+    const r = fab.getBoundingClientRect();
+    const vv = window.visualViewport;
+    let vw = window.innerWidth, vh = window.innerHeight, offX = 0, offY = 0;
+    if (vv) { vw = vv.width; vh = vv.height; offX = vv.offsetLeft || 0; offY = vv.offsetTop || 0; }
+
+    const right  = Math.max(0, (vw + offX) - r.left + GAP_X);
+    const bottom = Math.max(0, (vh + offY) - r.bottom + GAP_Y);
+    hint.style.right  = right + 'px';
+    hint.style.bottom = bottom + 'px';
   }
 
-  ready(function(){
-    const fab  = document.getElementById('ndxMsgrFab');
-    const hint = document.getElementById('msgrHint');
+  function showHint(){
+    hint.classList.add('show');
+    hint.setAttribute('aria-hidden','false');
+    placeHint();
+  }
 
-    if (!fab || !hint) {
-      console.warn('[msgr-hint] Không tìm thấy', { fab: !!fab, hint: !!hint });
-      return;
-    }
+  function hideHint(){
+    hint.classList.remove('show');
+    hint.setAttribute('aria-hidden','true');
+  }
 
-    const closeBtn = hint.querySelector('.ndx-hint-close');
+  // ⚡ Tự hiện sau 1.2s MỖI LẦN LOAD
+  window.addEventListener('load', () => setTimeout(showHint, 1200), { once:true });
 
-    function showHint(){
-      if (sessionStorage.getItem(KEY) === '1') {
-        // console.debug('[msgr-hint] đã đóng trong phiên này');
-        return;
-      }
-      hint.classList.add('show');
-      hint.setAttribute('aria-hidden', 'false');
-      // console.debug('[msgr-hint] SHOW');
-    }
-
-    function hideHint(){
-      hint.classList.remove('show');
-      hint.setAttribute('aria-hidden', 'true');
-      sessionStorage.setItem(KEY, '1');
-      // console.debug('[msgr-hint] HIDE');
-    }
-
-    // Tự bật sau 1500ms (giảm độ chờ để test)
-    setTimeout(showHint, 1500);
-
-    // Gắn sự kiện đóng
-    if (closeBtn) closeBtn.addEventListener('click', hideHint);
-    fab.addEventListener('click', hideHint);
+  // Recanh vị trí khi thay đổi viewport
+  ['resize','scroll','orientationchange','visibilitychange'].forEach(ev=>{
+    window.addEventListener(ev, placeHint, { passive:true });
   });
+  if (window.visualViewport){
+    ['resize','scroll'].forEach(ev=>{
+      window.visualViewport.addEventListener(ev, placeHint, { passive:true });
+    });
+  }
+
+  hint.querySelector('.ndx-hint-close')?.addEventListener('click', hideHint);
+  fab.addEventListener('click', hideHint);
 })();
 </script>
 
