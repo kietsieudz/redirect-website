@@ -281,26 +281,8 @@ const NDX_SERVERS = [
 ];
 const NDX_COMMUNITIES = {
   zalo: [
-    { name:"Server 1 (Clan - Box 1)", url:"https://zalo.me/g/guxxky409" },
-    { name:"Server 1 (Clan - Box 2)", url:"https://zalo.me/g/chhtoc951" },
-    { name:"Server 2 (3Q - Box 1)", url:"https://zalo.me/g/pqaiqm424" },
-    { name:"Server 3 (Mun - Box 1)", url:"https://zalo.me/g/crnbag894" },
-    { name:"Server 4 (Ping - Box 1)", url:"https://zalo.me/g/gfnekq114" },
-    { name:"Server 5 (Kid - Box 1)", url:"https://zalo.me/g/uelhmv606" },
-    { name:"Server 5 (Kid - Box 2)", url:"https://zalo.me/g/vmtbba265" },
-    { name:"Cộng đồng ngọc rồng chung", url:"https://zalo.me/g/jcssww622" },
-  ],
-  telegram: [
-    { name:"Telegram – Cộng đồng", url:"https://t.me/gdthanhdi" },
-  ],
-  facebook: [
-    { name:"Fanpage TDStudio - Quan trọng", url:"https://www.facebook.com/ngocrongnthevmax" },
-    { name:"Fanpage TDStudio - Event game", url:"https://www.facebook.com/ngaidinro" },
-    { name:"Group cộng đồng Facebook",  url:"https://www.facebook.com/groups/916049213653568" },
-  ],
-  discord: [
-    { name:"Discord – Cộng đồng", url:"https://discord.gg/jW8uBff4" },
-  ],
+    { name:"Whatsapp", url:"https://chat.whatsapp.com/Hg4CqxRa31u9TCN8WbWSWy?mode=wwt" },
+  ]
 };
 const NDX_ORDER = ["zalo", "telegram", "facebook", "discord"];
 
