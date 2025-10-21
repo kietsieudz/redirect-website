@@ -384,17 +384,13 @@ function initModals() {
 /* =========================
    7) Messenger FAB (badge + wiggle + click)
    ========================= */
-(function openFanpageFab() {
-  const PAGE_USERNAME = "tdstudio.indonesia";
-  const FANPAGE_URL = `https://facebook.com/${encodeURIComponent(PAGE_USERNAME)}`;
+(function whatsappGroupFabInit() {
+  const WA_GROUP_LINK = "https://chat.whatsapp.com/Hg4CqxRa31u9TCN8WbWSWy?mode=wwt";
 
   function handleClick(e) {
     e.preventDefault();
-    // Nếu muốn tắt badge khi click, gọi clearUnread() nếu hàm đó có tồn tại
     if (typeof clearUnread === "function") clearUnread();
-
-    // Mọi hệ điều hành → mở fanpage
-    window.open(FANPAGE_URL, "_blank", "noopener,noreferrer");
+    window.open(WA_GROUP_LINK, "_blank", "noopener,noreferrer");
   }
 
   function bind() {
@@ -409,7 +405,6 @@ function initModals() {
     bind();
   }
 })();
-
 
 /* Public API để dùng ở nơi khác nếu cần */
 function setUnread(count = 1) {
