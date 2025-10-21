@@ -384,33 +384,61 @@ function initModals() {
 /* =========================
    7) Messenger FAB (badge + wiggle + click)
    ========================= */
+<script>
 (function messengerFabInit() {
   const PAGE_USERNAME = "tdstudio.indonesia";
-  const MME_URL = `fb-messenger://user-thread/${encodeURIComponent(PAGE_USERNAME)}`;
-  const FANPAGE_URL = `https://facebook.com/${encodeURIComponent(PAGE_USERNAME)}`;
-  const MME_WEB_URL = `https://m.me/${encodeURIComponent(PAGE_USERNAME)}`;
+  // Nếu bạn có PAGE_ID số (khuyến nghị), điền vào đây để mở FB app ổn định hơn:
+  const PAGE_ID = ""; // ví dụ: "123456789012345" (để trống cũng chạy được)
 
-  const isMobileUA = () =>
-    /Android|iPhone|iPad|iPod|IEMobile|Windows Phone|Mobile/i.test(
-      navigator.userAgent || ""
-    );
+  const MESSENGER_APP = `fb-messenger://user-thread/${encodeURIComponent(PAGE_USERNAME)}`;
+  const FB_APP_BY_ID  = PAGE_ID ? `fb://page/${PAGE_ID}` : "";
+  // Facewebmodal mở Facebook app kèm URL (ổn cho iOS)
+  const FB_APP_FACEWEB = `fb://facewebmodal/f?href=${encodeURIComponent("https://facebook.com/" + PAGE_USERNAME)}`;
 
-  function openMessenger() {
-    if (!isMobileUA()) {
-      // Desktop → mở fanpage
-      window.open(FANPAGE_URL, "_blank", "noopener,noreferrer");
+  const FANPAGE_WEB = `https://facebook.com/${encodeURIComponent(PAGE_USERNAME)}`;
+  const MME_WEB     = `https://m.me/${encodeURIComponent(PAGE_USERNAME)}`;
+
+  const isMobile = () => /Android|iPhone|iPad|iPod|IEMobile|Windows Phone|Mobile/i
+    .test(navigator.userAgent || "");
+
+  function smartOpen(url) { location.href = url; }
+
+  function openContactFlow() {
+    if (!isMobile()) {
+      // PC: luôn vào fanpage trên trình duyệt
+      window.open(FANPAGE_WEB, "_blank", "noopener,noreferrer");
       return;
     }
 
-    // Mobile → thử mở Messenger app trước
-    const start = Date.now();
-    const timeout = setTimeout(() => {
-      // Nếu sau 1.2s chưa chuyển, mở fallback link (m.me)
-      if (Date.now() - start < 1500) location.href = MME_WEB_URL;
+    // Mobile: thử Messenger app → Facebook app → web
+    let acted = false;
+
+    // Fallback 2: Facebook app
+    const t2 = setTimeout(() => {
+      if (acted) return;
+      acted = true;
+      // Ưu tiên mở bằng ID nếu có, không thì dùng facewebmodal
+      smartOpen(PAGE_ID ? FB_APP_BY_ID : FB_APP_FACEWEB);
     }, 1200);
 
-    // Cố gắng mở Messenger app
-    location.href = MME_URL;
+    // Fallback 3: Web (fanpage hoặc m.me)
+    const t3 = setTimeout(() => {
+      if (acted) return;
+      acted = true;
+      // Nếu đang ở in-app browser có thể mở được m.me thì ưu tiên m.me,
+      // còn nếu lo bị chặn, dùng fanpage web cho chắc:
+      smartOpen(FANPAGE_WEB); // hoặc đổi sang MME_WEB nếu bạn muốn vào hộp chat web
+    }, 2400);
+
+    // Bước 1: thử mở Messenger app
+    try {
+      acted = false;
+      smartOpen(MESSENGER_APP);
+    } catch (_) {
+      // Nếu scheme bị chặn ngay lập tức, nhảy thẳng sang FB app
+      clearTimeout(t2); clearTimeout(t3);
+      smartOpen(PAGE_ID ? FB_APP_BY_ID : FB_APP_FACEWEB);
+    }
   }
 
   function bind() {
@@ -418,9 +446,9 @@ function initModals() {
     if (!el) return;
     el.addEventListener("click", (e) => {
       e.preventDefault();
-      clearUnread?.(); // nếu có hàm badge
-      openMessenger();
-    });
+      if (typeof clearUnread === "function") clearUnread();
+      openContactFlow();
+    }, { passive: false });
   }
 
   if (document.readyState === "loading") {
@@ -429,6 +457,8 @@ function initModals() {
     bind();
   }
 })();
+</script>
+
 
 
 /* Public API để dùng ở nơi khác nếu cần */
