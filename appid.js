@@ -403,7 +403,7 @@ function initModals() {
    7) Messenger FAB (badge + wiggle + click)
    ========================= */
 (function messengerFabInit() {
-  const PAGE_USERNAME = "profile.php?id=61582142296051";
+  const PAGE_USERNAME = "tdstudio.indonesia";
   const MME_URL      = `https://m.me/${encodeURIComponent(PAGE_USERNAME)}`;
   const FANPAGE_URL  = `https://facebook.com/${encodeURIComponent(PAGE_USERNAME)}`;
   const isMobileUA   = () => /Android|iPhone|iPad|iPod|IEMobile|Windows Phone|Mobile/i.test(navigator.userAgent || "");
