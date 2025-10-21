@@ -386,21 +386,41 @@ function initModals() {
    ========================= */
 (function messengerFabInit() {
   const PAGE_USERNAME = "tdstudio.indonesia";
-  const MME_URL      = `https://m.me/${encodeURIComponent(PAGE_USERNAME)}`;
-  const FANPAGE_URL  = `https://facebook.com/${encodeURIComponent(PAGE_USERNAME)}`;
-  const isMobileUA   = () => /Android|iPhone|iPad|iPod|IEMobile|Windows Phone|Mobile/i.test(navigator.userAgent || "");
+  const MME_URL = `fb-messenger://user-thread/${encodeURIComponent(PAGE_USERNAME)}`;
+  const FANPAGE_URL = `https://facebook.com/${encodeURIComponent(PAGE_USERNAME)}`;
+  const MME_WEB_URL = `https://m.me/${encodeURIComponent(PAGE_USERNAME)}`;
 
-  function handleClick(e) {
-    e.preventDefault();
-    clearUnread(); // tắt badge khi user nhấn
-    if (isMobileUA()) location.href = MME_URL;
-    else window.open(FANPAGE_URL, "_blank", "noopener,noreferrer");
+  const isMobileUA = () =>
+    /Android|iPhone|iPad|iPod|IEMobile|Windows Phone|Mobile/i.test(
+      navigator.userAgent || ""
+    );
+
+  function openMessenger() {
+    if (!isMobileUA()) {
+      // Desktop → mở fanpage
+      window.open(FANPAGE_URL, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    // Mobile → thử mở Messenger app trước
+    const start = Date.now();
+    const timeout = setTimeout(() => {
+      // Nếu sau 1.2s chưa chuyển, mở fallback link (m.me)
+      if (Date.now() - start < 1500) location.href = MME_WEB_URL;
+    }, 1200);
+
+    // Cố gắng mở Messenger app
+    location.href = MME_URL;
   }
 
   function bind() {
-    const el = $("#ndxMsgrFab");
+    const el = document.getElementById("ndxMsgrFab");
     if (!el) return;
-    el.addEventListener("click", handleClick, { passive: false });
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      clearUnread?.(); // nếu có hàm badge
+      openMessenger();
+    });
   }
 
   if (document.readyState === "loading") {
@@ -409,6 +429,7 @@ function initModals() {
     bind();
   }
 })();
+
 
 /* Public API để dùng ở nơi khác nếu cần */
 function setUnread(count = 1) {
