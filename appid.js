@@ -384,7 +384,7 @@ function initModals() {
 /* =========================
    7) Messenger FAB (badge + wiggle + click)
    ========================= */
-<script>
+
 (function messengerFabInit() {
   const PAGE_USERNAME = "tdstudio.indonesia";
   // Nếu bạn có PAGE_ID số (khuyến nghị), điền vào đây để mở FB app ổn định hơn:
@@ -457,7 +457,6 @@ function initModals() {
     bind();
   }
 })();
-</script>
 
 
 
