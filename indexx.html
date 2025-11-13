@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="vi" data-theme="dark">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>TDStudio — Cộng đồng</title>
+
+        <style>
+    /* ---------- Dark-only, grayscale accents ---------- */
+    :root{
+      --bg: #0b0b0d;
+      --card: #0f1113;
+      --fg: #eceff1;
+      --muted: #9aa0a6;
+      --line: rgba(255,255,255,0.06);
+      --accent: #ffffff;
+      --radius: 14px;
+      --shadow-lg: 0 18px 50px rgba(0,0,0,0.7), 0 6px 20px rgba(0,0,0,0.5);
+      --shadow-sm: 0 8px 20px rgba(0,0,0,0.5);
+      --container: 980px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .wrap{min-height:100vh;display:flex;justify-content:center;padding:28px 20px}
+    .sheet{width:100%;max-width:var(--container)}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow-sm);border:1px solid var(--line);padding:16px;margin-bottom:16px}
+    header.site{display:flex;flex-direction:column;gap:10px;margin-bottom:10px}
+    .top{display:flex;align-items:center;gap:14px}
+    .logo{width:52px;height:52px;border-radius:10px;object-fit:cover;border:1px solid var(--line);flex:0 0 52px}
+    .title{font-weight:800;font-size:1.08rem;letter-spacing:0.2px}
+    .subtitle{color:var(--muted);font-size:0.92rem}
+    nav.main{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    nav.main a{padding:8px 12px;border-radius:10px;border:1px solid transparent;font-weight:700;font-size:0.95rem}
+    nav.main a:hover{border-color:var(--line);background:rgba(255,255,255,0.02)}
+
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    @media(max-width:880px){ .grid{grid-template-columns:1fr} }
+
+    /* servers */
+    .server-list{display:flex;flex-direction:column;gap:10px}
+    .srv{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .srv .dot{width:11px;height:11px;border-radius:50%;background:var(--accent)}
+    .srv .name{font-weight:700}
+    .srv .meta{margin-left:auto;color:var(--muted);font-weight:700}
+    .srv .cta{margin-left:12px;padding:8px 12px;border-radius:10px;border:1px solid var(--line);font-weight:700;cursor:pointer;color:var(--accent);background:transparent}
+
+    /* chips */
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;font-size:0.92rem;color:var(--fg);font-weight:600}
+
+    /* footer */
+    footer.site{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:0.92rem;padding:10px;border-radius:12px}
+    @media(max-width:520px){ footer.site{flex-direction:column;align-items:flex-start} }
+
+    /* FAB & hint */
+    #fab{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);background:var(--card);cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+    #hint{position:fixed;right:92px;bottom:28px;padding:10px 14px;border-radius:12px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow-sm);display:none;max-width:260px;color:var(--muted)}
+    #hint.show{display:block}
+
+    /* ---------- Modal forcing copy (non-dismissible) ---------- */
+    .modal-backdrop{
+      position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.7));z-index:99999;
+      display:flex;align-items:center;justify-content:center;padding:20px;
+      /* prevent pointer events reaching page under */
+      pointer-events:auto;
+    }
+    .modal{
+      width:100%;max-width:520px;background:linear-gradient(180deg, rgba(18,18,20,0.98), rgba(16,16,18,0.98));
+      border-radius:18px;padding:22px;border:1px solid rgba(255,255,255,0.06);
+      box-shadow:var(--shadow-lg);color:var(--fg);
+    }
+    .modal h3{margin:0 0 10px;font-size:1.08rem}
+    .modal p{margin:0 0 14px;color:var(--muted);line-height:1.5}
+    .modal .actions{display:flex;gap:10px;align-items:center;margin-top:6px}
+    .btn-primary{
+      background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.09);padding:10px 14px;border-radius:12px;font-weight:800;cursor:pointer;font-size:0.98rem;
+      box-shadow:0 8px 30px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(255,255,255,0.02);
+    }
+    .btn-ghost{background:transparent;color:var(--muted);border:1px dashed rgba(255,255,255,0.04);padding:10px 12px;border-radius:12px;font-weight:700}
+    .modal .hint{margin-top:12px;color:var(--muted);font-size:0.92rem}
+
+    /* visually hide any close affordance – modal is intentionally non-dismissible */
+    .no-close{display:none}
+
+    .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+    </head>
+    <body>
+        <a class="visually-hidden" href="#main">Bỏ qua nội dung</a>
+
+        <div class="wrap">
+            <main class="sheet" id="main" role="main"
+                aria-label="TDStudio homepage">
+
+                <header class="site card" role="banner">
+                    <div class="top">
+                        <img src="images/avatar.png" alt="TDStudio" class="logo"
+                            loading="lazy">
+                        <div>
+                            <div class="title">TDStudio</div>
+                            <div class="subtitle">Server
+                                & cộng đồng</div>
+                        </div>
+                    </div>
+
+                    <nav class="main" aria-label="Primary navigation">
+                        <a href="#servers">Server</a>
+                        <a href="#communities">Cộng đồng</a>
+                        <a href="https://www.facebook.com/tdstudiogame"
+                            target="_blank" rel="noopener">Fanpage</a>
+                        <a href="https://www.facebook.com/ngaidinro"
+                            target="_blank" rel="noopener">Fanpage</a>
+                        <a href="https://discord.gg/jW8uBff4"
+                            target="_blank" rel="noopener">Discord</a>
+                        <a href="https://t.me/gdthanhdi"
+                            target="_blank" rel="noopener">Telegram</a>
+                    </nav>
+                </header>
+
+                <div class="grid" style="align-items:start">
+                    <section id="servers" class="card"
+                        aria-labelledby="serversTitle">
+                        <h2 id="serversTitle"
+                            style="margin:0 0 10px;font-size:1.02rem">Kênh truy
+                            cập</h2>
+                        <p style="margin:0 0 12px;color:var(--muted)">Nhấn để mở
+                            danh sách kênh.</p>
+
+                        <div class="server-list" role="list"
+                            aria-label="Danh sách server">
+                            <a class="srv" id="srv1" href="#" role="listitem"
+                                aria-label="Mở Server 1">
+                                <span class="dot" aria-hidden="true"></span>
+                                <span class="name">Server 1 (Clan)</span>
+                                <span class="meta">Online</span>
+                            </a>
+
+                            <a class="srv" id="srv2" href="#" role="listitem"
+                                aria-label="Mở Server 2">
+                                <span class="dot" aria-hidden="true"></span>
+                                <span class="name">Server 2 (3Q)</span>
+                                <span class="meta">Online</span>
+                            </a>
+
+                            <a class="srv" id="srv3" href="#" role="listitem"
+                                aria-label="Mở Server 3">
+                                <span class="dot" aria-hidden="true"></span>
+                                <span class="name">Server 3 (Mun)</span>
+                                <span class="meta">Online</span>
+                            </a>
+
+                            <a class="srv" id="srv4" href="#" role="listitem"
+                                aria-label="Mở Server 4">
+                                <span class="dot" aria-hidden="true"></span>
+                                <span class="name">Server 4 (Ping)</span>
+                                <span class="meta">Online</span>
+                            </a>
+
+                            <a class="srv" id="srv5" href="#" role="listitem"
+                                aria-label="Mở Server 5">
+                                <span class="dot" aria-hidden="true"></span>
+                                <span class="name">Server 5 (Kid)</span>
+                                <span class="meta">Online</span>
+                            </a>
+                        </div>
+
+                        <noscript><small style="color:var(--muted)">Bật
+                                JavaScript để mở link đúng.</small></noscript>
+                    </section>
+
+                    <aside id="communities" class="card"
+                        aria-labelledby="comTitle">
+                        <h3 id="comTitle"
+                            style="margin:0 0 10px;font-size:1.0rem">Cộng đồng &
+                            Kênh</h3>
+
+                        <div style="margin-bottom:12px">
+                            <div
+                                style="color:var(--muted);font-size:0.95rem;margin-bottom:8px">Box
+                                Zalo</div>
+                            <div class="chips" role="list"
+                                aria-label="Zalo groups">
+                                <a class="chip"
+                                    href="https://zalo.me/g/guxxky409"
+                                    target="_blank" rel="noopener">Zalo 1 –
+                                    Server 1</a>
+                                <a class="chip"
+                                    href="https://zalo.me/g/chhtoc951"
+                                    target="_blank" rel="noopener">Zalo 2 –
+                                    Server 1</a>
+                                <a class="chip"
+                                    href="https://zalo.me/g/pqaiqm424"
+                                    target="_blank" rel="noopener">Zalo 1 –
+                                    Server 2</a>
+                                <a class="chip"
+                                    href="https://zalo.me/g/crnbag894"
+                                    target="_blank" rel="noopener">Zalo 1 –
+                                    Server 3</a>
+                                <a class="chip"
+                                    href="https://zalo.me/g/gfnekq114"
+                                    target="_blank" rel="noopener">Zalo 1 –
+                                    Server 4</a>
+                                <a class="chip"
+                                    href="https://zalo.me/g/uelhmv606"
+                                    target="_blank" rel="noopener">Zalo 1 –
+                                    Server 5</a>
+                                <a class="chip"
+                                    href="https://zalo.me/g/vmtbba265"
+                                    target="_blank" rel="noopener">Zalo 2 –
+                                    Server 5</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div
+                                style="color:var(--muted);font-size:0.95rem;margin-bottom:8px">Kênh
+                                theo khu vực</div>
+                            <div class="chips" role="list">
+                                <a class="chip"
+                                    href="https://chat.whatsapp.com/Hg4CqxRa31u9TCN8WbWSWy"
+                                    target="_blank" rel="noopener">WhatsApp –
+                                    Indonesia</a>
+                                <a class="chip" href="https://t.me/gdthanhdi"
+                                    target="_blank" rel="noopener">Telegram</a>
+                                <a class="chip"
+                                    href="https://discord.gg/jW8uBff4"
+                                    target="_blank" rel="noopener">Discord</a>
+                                <a class="chip"
+                                    href="https://www.facebook.com/groups/916049213653568"
+                                    target="_blank" rel="noopener">Group
+                                    Facebook</a>
+                                <a class="chip"
+                                    href="https://www.facebook.com/tdstudiogame"
+                                    target="_blank" rel="noopener">Fanpage
+                                    chính</a>
+                                <a class="chip"
+                                    href="https://www.facebook.com/ngaidinro/"
+                                    target="_blank" rel="noopener">Fanpage phụ
+                                    A</a>
+                                <a class="chip"
+                                    href="https://www.facebook.com/ngocrongonlinevip"
+                                    target="_blank" rel="noopener">Fanpage phụ
+                                    B</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <footer class="site card" role="contentinfo">
+                    <small>© <span id="year"></span> TDStudio • Cộng
+                        đồng</small>
+                    <div style="display:flex;gap:8px;align-items:center">
+                        <a class="chip" href="#" id="toTop"
+                            aria-label="Lên đầu trang">↑ Lên trên</a>
+                        <button id="copyUrl" class="chip"
+                            aria-label="Sao chép link">Sao chép link</button>
+                    </div>
+                </footer>
+            </main>
+        </div>
+
+        <!-- FAB + hint -->
+        <button id="fab" aria-label="Messeger hoặc Fanpage" title="Liên hệ"
+            style="z-index:50">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                aria-hidden="true">
+                <path
+                    d="M12 2C6.48 2 2 5.82 2 10c0 2.21 1.64 4.21 4 5.58V22l4.2-2.25C12.68 19.66 13.33 19.7 14 19.7c5.52 0 10-3.82 10-8.7S17.52 2 12 2z"
+                    fill="currentColor" />
+            </svg>
+        </button>
+        <div id="hint" role="dialog" aria-hidden="true"
+            style="color:var(--muted);z-index:50">Gõ <strong>xin code</strong>
+            để nhận giftcode.</div>
+
+        <script>
+/* ========================= Behavior ========================= */
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Map links (keeps real URLs out of static HTML)
+const MAP = {
+  srv1: "https://nroclan.com",
+  srv2: "https://nro3q.com",
+  srv3: "https://nromun.com",
+  srv4: "https://nroping.com",
+  srv5: "https://nrokid.com"
+};
+Object.keys(MAP).forEach(id=>{
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.addEventListener('click', (e)=>{
+    e.preventDefault();
+    window.open(MAP[id], '_blank', 'noopener,noreferrer');
+  });
+});
+
+// FAB behavior
+(function(){
+  const PAGE = "ngocrongnthevmax";
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||"");
+  const fab = document.getElementById('fab');
+  const MME = `https://m.me/${encodeURIComponent(PAGE)}`;
+  const PAGE_URL = `https://facebook.com/${encodeURIComponent(PAGE)}`;
+  fab.addEventListener('click', e => {
+    e.preventDefault();
+    if(isMobile) location.href = MME;
+    else window.open(PAGE_URL, '_blank', 'noopener,noreferrer');
+  });
+  window.addEventListener('load', ()=> setTimeout(()=> document.getElementById('hint').classList.add('show'), 700));
+})();
+
+// Copy link (general button)
+document.getElementById('copyUrl').addEventListener('click', ()=>{
+  const url = location.href;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(()=> alert('Đã copy link'), ()=> fallbackCopy(url));
+  } else fallbackCopy(url);
+  function fallbackCopy(u){ const ta=document.createElement('textarea'); ta.value=u; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); alert('Đã copy link'); }
+});
+
+// To top
+document.getElementById('toTop').addEventListener('click', e=>{ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); });
+
+/* ========================= In-app detection: show non-dismissible modal ========================= */
+(function(){
+  const ua = navigator.userAgent || "";
+  const isMessenger   = /Messenger|FBAN\/Messenger|FB_IAB/i.test(ua);
+  const isFacebookApp = /(FBAN|FBAV|FB_IAB|FB4A|com\.facebook\.katana)/i.test(ua);
+  const isInstagram   = /Instagram/i.test(ua);
+  const isTikTok      = /TikTok/i.test(ua);
+  const isZalo        = /Zalo|zclient|ZaloTheme/i.test(ua);
+  const isLine        = /Line\/|LINE/i.test(ua);
+  const isTwitterApp  = /\bTwitter|X\/\d+/i.test(ua);
+  const isSnap        = /Snapchat/i.test(ua);
+
+  const appName = isMessenger ? "Messenger"
+               : isFacebookApp ? "Facebook"
+               : isInstagram ? "Instagram"
+               : isTikTok ? "TikTok"
+               : isZalo ? "Zalo"
+               : isLine ? "LINE"
+               : isTwitterApp ? "X (Twitter)"
+               : isSnap ? "Snapchat"
+               : "";
+
+  if(!appName) return; // not opened inside a targeted app -> do nothing
+
+  // Create modal backdrop (non-dismissible)
+  const backdrop = document.createElement('div');
+  backdrop.className = 'modal-backdrop';
+  backdrop.setAttribute('role','alertdialog');
+  backdrop.setAttribute('aria-modal','true');
+  backdrop.setAttribute('aria-label','Mở bằng trình duyệt');
+  // prevent focus from leaving modal: trap focus
+  backdrop.tabIndex = -1;
+
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  modal.innerHTML = `
+    <h3>Ứng dụng phát hiện: ${appName}</h3>
+    <p>Trang này không hỗ trợ thao tác đầy đủ trong ứng dụng ${appName}. Để trải nghiệm đúng và đăng ký/tải game, vui lòng sao chép link rồi mở bằng <strong>Chrome</strong> (Android) hoặc <strong>Safari</strong> (iPhone).</p>
+    <div class="actions">
+      <button id="modalCopy" class="btn-primary" aria-label="Sao chép link">Sao chép link & mở ngoài</button>
+      <button id="modalHelp" class="btn-ghost" aria-label="Hướng dẫn">Hướng dẫn mở</button>
+    </div>
+    <div class="hint">Sau khi copy, dán vào thanh địa chỉ Chrome/Safari và mở. Trang sẽ hiển thị đầy đủ.</div>
+    <div class="no-close" aria-hidden="true"></div>
+  `;
+
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
+
+  // Prevent scrolling & interaction under modal
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  // Trap focus inside modal (basic)
+  const focusable = Array.from(modal.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])'));
+  if(focusable.length) focusable[0].focus();
+  let lastFocused = focusable[focusable.length-1];
+  document.addEventListener('focus', function(e){
+    if(!modal.contains(e.target)){
+      e.stopPropagation();
+      if(focusable.length) focusable[0].focus();
+    }
+  }, true);
+
+  // Disable right-click contextmenu on backdrop to avoid easy copy via menu (still possible but reduces accidental)
+  backdrop.addEventListener('contextmenu', (e)=> e.preventDefault());
+
+  // modal actions
+  const copyBtn = document.getElementById('modalCopy');
+  const helpBtn = document.getElementById('modalHelp');
+
+  copyBtn.addEventListener('click', ()=>{
+    const url = location.href;
+    function done(){
+      // Attempt to open instruction overlay to help mobile users open in external browser
+      copyBtn.textContent = 'Đã copy — Mở Chrome/Safari';
+      copyBtn.disabled = true;
+      // Show an OS-specific hint link for convenience:
+      const hint = document.createElement('div');
+      hint.style.marginTop = '12px';
+      hint.style.color = 'var(--muted)';
+      hint.style.fontSize = '0.95rem';
+      hint.innerHTML = `<strong>Mẹo:</strong> Mở trình duyệt ngoài, dán link và truy cập.`;
+      modal.appendChild(hint);
+    }
+    function fallback(){
+      const ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta); done();
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(done, fallback);
+    } else fallback();
+  });
+
+  helpBtn.addEventListener('click', ()=>{
+    // Show simple instructions modal content (still inside main modal)
+    helpBtn.disabled = true;
+    const inst = document.createElement('div');
+    inst.style.marginTop = '12px';
+    inst.style.color = 'var(--muted)';
+    inst.style.fontSize = '0.95rem';
+    inst.innerHTML = `
+      <strong>Cách mở trên thiết bị:</strong>
+      <ul style="margin:8px 0 0 18px;color:var(--muted)">
+        <li>Android: Mở Chrome → nhấn thanh địa chỉ → dán (Paste) → Enter.</li>
+        <li>iPhone: Mở Safari → chạm vào thanh địa chỉ → dán → Đi.</li>
+        <li>Hoặc giữ link và chọn "Mở bằng trình duyệt" nếu có tùy chọn.</li>
+      </ul>
+    `;
+    modal.appendChild(inst);
+  });
+
+  // IMPORTANT: do NOT provide any close/remove code. Modal is intentionally non-dismissible.
+  // But to be safe for extremely blocked environments, provide keyboard copy fallback on Ctrl/Cmd+C
+  document.addEventListener('keydown', function(e){
+    // allow copying via keyboard as well while modal present
+    if((e.ctrlKey || e.metaKey) && e.key === 'c'){
+      const url = location.href;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(()=> {
+          // visual feedback
+          copyBtn.textContent = 'Đã copy';
+          copyBtn.disabled = true;
+        }, ()=>{});
+      }
+    }
+    // prevent Escape from closing anything
+    if(e.key === 'Escape'){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+
+})();
+  </script>
+    </body>
+</html>
